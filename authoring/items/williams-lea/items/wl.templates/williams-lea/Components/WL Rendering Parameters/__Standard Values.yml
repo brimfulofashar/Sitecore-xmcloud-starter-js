@@ -1,0 +1,13 @@
+---
+ID: "8be2d8db-9fb2-43a1-ac0e-c24b818250f2"
+Parent: "637c98ee-eb0b-43a4-a4bb-8e3921e57eb3"
+Template: "637c98ee-eb0b-43a4-a4bb-8e3921e57eb3"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL Rendering Parameters/__Standard Values"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

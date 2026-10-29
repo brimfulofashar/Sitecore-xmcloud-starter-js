@@ -1,0 +1,13 @@
+---
+ID: "ca19c7ce-4153-47c3-abae-5bb3849bc63c"
+Parent: "62309618-c7a1-48b1-a2c2-46e5d1412288"
+Template: "62309618-c7a1-48b1-a2c2-46e5d1412288"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL Insight Listing/__Standard Values"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

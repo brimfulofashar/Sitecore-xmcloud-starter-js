@@ -1,0 +1,49 @@
+---
+ID: "bd26626c-be58-46cb-ab40-d88f460f3629"
+Parent: "01b8da2e-ec7c-4100-a867-3dc5abb7819b"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: "/sitecore/layout/Renderings/Project/williams-lea/WL Page Banner"
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: "WlPageBanner"
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: "Office/32x32/window_size.png"
+- ID: "17bb046a-a32a-41b3-8315-81217947611b"
+  Hint: ComponentQuery
+  Value: |
+    query WlPageBanner($contextItem: String!, $language: String!) {
+      externalFields: item(path: $contextItem, language: $language) {
+        pageTitle: field(name: "pageTitle") { jsonValue }
+        pageHeaderTitle: field(name: "pageHeaderTitle") { jsonValue }
+        pageSubtitle: field(name: "pageSubtitle") { jsonValue }
+        pageSummary: field(name: "pageSummary") { jsonValue }
+        pageThumbnail: field(name: "pageThumbnail") { jsonValue }
+        pageDisplayDate: field(name: "pageDisplayDate") { jsonValue }
+        pageReadTime: field(name: "pageReadTime") { jsonValue }
+        parent {
+          pageTitle: field(name: "pageTitle") { jsonValue }
+        }
+      }
+    }
+- ID: "a3411ff6-c978-40aa-b059-a49b9ca2209b"
+  Hint: Can select Page as a data source
+  Value: "1"
+- ID: "a77e8568-1ab3-44f1-a664-b7c37ec7810d"
+  Hint: Parameters Template
+  Value: "{637C98EE-EB0B-43A4-A4BB-8E3921E57EB3}"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "1000"
+- ID: "e829c217-5e94-4306-9c48-2634b094fdc2"
+  Hint: OtherProperties
+  Value: "IsRenderingsWithDynamicPlaceholders=true"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

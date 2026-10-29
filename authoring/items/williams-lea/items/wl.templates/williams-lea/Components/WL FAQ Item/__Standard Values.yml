@@ -1,0 +1,13 @@
+---
+ID: "dd2f5ec1-ff68-44b9-a87a-ab928f0cce50"
+Parent: "3b76f97c-66ce-440c-abe0-7a2435f47725"
+Template: "3b76f97c-66ce-440c-abe0-7a2435f47725"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL FAQ Item/__Standard Values"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

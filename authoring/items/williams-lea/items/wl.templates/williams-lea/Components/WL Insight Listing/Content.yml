@@ -1,0 +1,13 @@
+---
+ID: "d65f792e-285a-4640-ade6-e39d8f6b5ac6"
+Parent: "62309618-c7a1-48b1-a2c2-46e5d1412288"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL Insight Listing/Content"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

@@ -1,0 +1,18 @@
+{
+    "$schema": "../../../.sitecore/schemas/ModuleFile.schema.json",
+    "namespace": "Project.williams-lea",
+    "items": {
+        "includes": [
+            {
+                "name": "wl.templates",
+                "path": "/sitecore/templates/Project/williams-lea",
+                "allowedPushOperations": "CreateUpdateAndDelete"
+            },
+            {
+                "name": "wl.renderings",
+                "path": "/sitecore/layout/Renderings/Project/williams-lea",
+                "allowedPushOperations": "CreateUpdateAndDelete"
+            }
+        ]
+    }
+}

@@ -1,0 +1,18 @@
+---
+ID: "2200bf66-c50d-4938-a772-d23287637126"
+Parent: "d2cbac91-0b36-486f-a8ca-0dbe4a12ce7c"
+Template: "d2cbac91-0b36-486f-a8ca-0dbe4a12ce7c"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL Tabs/__Standard Values"
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: |
+    {D4A9E5FF-2FB8-4E1C-A7FA-3B99ECD8D5F1}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

@@ -1,0 +1,13 @@
+---
+ID: "e143e76c-f1fc-4897-a066-76c3c8cea6ee"
+Parent: "96128325-2946-4775-a9ab-f59ef3d576b1"
+Template: "96128325-2946-4775-a9ab-f59ef3d576b1"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL Insight Cards/__Standard Values"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

@@ -1,0 +1,18 @@
+---
+ID: "52f758e7-0455-49cc-a904-ccdd112a2605"
+Parent: "34586018-aaa6-44e3-a227-4850d6cbc71d"
+Template: "34586018-aaa6-44e3-a227-4850d6cbc71d"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL Service Stack/__Standard Values"
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: |
+    {D4A9E5FF-2FB8-4E1C-A7FA-3B99ECD8D5F1}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

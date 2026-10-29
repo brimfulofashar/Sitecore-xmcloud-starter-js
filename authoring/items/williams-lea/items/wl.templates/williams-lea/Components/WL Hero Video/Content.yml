@@ -1,0 +1,13 @@
+---
+ID: "c5a7ee4f-5240-4b2e-a755-e6e21023f2c0"
+Parent: "0a54f2f7-c262-4d05-abad-03b18cab8233"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL Hero Video/Content"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

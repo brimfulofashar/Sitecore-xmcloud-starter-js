@@ -1,0 +1,26 @@
+---
+ID: "637c98ee-eb0b-43a4-a4bb-8e3921e57eb3"
+Parent: "5f117b4b-58fe-4769-a247-053cbcb0a909"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL Rendering Parameters"
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: "Office/32x32/gear.png"
+- ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
+  Hint: __Base template
+  Value: |
+    {8CA06D6A-B353-44E8-BC31-B528C7306971}
+    {44A022DB-56D3-419A-B43B-E27E4D8E9C41}
+    {5C74E985-E055-43FF-B28C-DB6C6A6450A2}
+- ID: "f7d48a55-2158-4f02-9356-756654404f73"
+  Hint: __Standard values
+  Value: "{8BE2D8DB-9FB2-43A1-AC0E-C24B818250F2}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

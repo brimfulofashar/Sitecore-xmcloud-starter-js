@@ -1,0 +1,13 @@
+---
+ID: "3f4ccdfe-79f7-450f-a469-e800439132fa"
+Parent: "176f2b35-9ddc-4be8-a5c7-21723b981cb2"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL Footer/Content"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

@@ -1,0 +1,13 @@
+---
+ID: "a36edd20-28be-4c66-a4be-5595c3222d51"
+Parent: "d4a9e5ff-2fb8-4e1c-a7fa-3b99ecd8d5f1"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL Link Group/Content"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

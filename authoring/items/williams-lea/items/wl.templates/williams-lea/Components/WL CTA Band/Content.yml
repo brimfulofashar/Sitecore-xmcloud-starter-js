@@ -1,0 +1,13 @@
+---
+ID: "feba8669-4c1e-4f9a-af30-fcc423ed6164"
+Parent: "dd3a903f-43b3-4534-a065-3c96ecd0e7dd"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL CTA Band/Content"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

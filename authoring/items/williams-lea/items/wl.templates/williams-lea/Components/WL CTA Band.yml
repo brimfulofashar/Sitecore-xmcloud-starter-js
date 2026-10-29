@@ -1,0 +1,25 @@
+---
+ID: "dd3a903f-43b3-4534-a065-3c96ecd0e7dd"
+Parent: "5f117b4b-58fe-4769-a247-053cbcb0a909"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL CTA Band"
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: "Office/32x32/megaphone.png"
+- ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
+  Hint: __Base template
+  Value: |
+    {93860208-72D8-4FFD-AD0C-A0AD11BCBD37}
+    {1930BBEB-7805-471A-A3BE-4858AC7CF696}
+- ID: "f7d48a55-2158-4f02-9356-756654404f73"
+  Hint: __Standard values
+  Value: "{8A1B1748-7027-4C8E-A83D-FC2173948CC6}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

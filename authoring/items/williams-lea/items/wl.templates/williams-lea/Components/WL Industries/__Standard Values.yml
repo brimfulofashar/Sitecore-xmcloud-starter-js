@@ -1,0 +1,18 @@
+---
+ID: "c9f5baa9-efd7-454b-aefd-179e2c8a9aef"
+Parent: "fd0e9316-0abc-49d1-ad95-6bf670fce2ad"
+Template: "fd0e9316-0abc-49d1-ad95-6bf670fce2ad"
+Path: "/sitecore/templates/Project/williams-lea/Components/WL Industries/__Standard Values"
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: |
+    {6D724984-019E-4628-AACF-2D7271258C93}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
