@@ -5,12 +5,15 @@ import { Default as WlHeader } from '@/components/wl-header/WlHeader';
 import { Default as WlFooter } from '@/components/wl-footer/WlFooter';
 import { baseProps, image, link, text } from './wl.mocks';
 
-jest.mock('@sitecore-content-sdk/nextjs', () => require('./wl.mocks').sdkMock);
+jest.mock(
+  '@sitecore-content-sdk/nextjs',
+  () => jest.requireActual('./wl.mocks').sdkMock,
+);
 jest.mock(
   '@/components/image/ImageWrapper.dev',
-  () => require('./wl.mocks').imageWrapperMock,
+  () => jest.requireActual('./wl.mocks').imageWrapperMock,
 );
-jest.mock('lucide-react', () => require('./wl.mocks').lucideMock);
+jest.mock('lucide-react', () => jest.requireActual('./wl.mocks').lucideMock);
 
 const navGroup = (
   id: string,

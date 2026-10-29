@@ -28,7 +28,7 @@ All Williams Lea components live in `src/components/wl-*`, with shared atoms in 
 | --- | --- | --- |
 | WL Header | `WlHeader` | Utility bar, main nav with mega menus, Contact CTA, mobile drawer |
 | WL Footer | `WlFooter` | Footer links, CTA, social links, copyright |
-| WL Hero Video | `WlHeroVideo` | Full-height video hero (respects reduced motion; poster image fallback) |
+| WL Hero Video | `WlHeroVideo` | Full-height video hero (respects reduced motion); falls back to the image, then to an animated brand wave backdrop |
 | WL Service Stack | `WlServiceStack` | Sticky stacked service-pillar cards |
 | WL Solutions Grid | `WlSolutionsGrid` | "Solutions in Action" link grid |
 | WL Industries | `WlIndustries` | "Powering Diverse Sectors" industry list with image |
@@ -62,9 +62,15 @@ The module is also picked up automatically by an XM Cloud Deploy build, because 
 
 ## Create the site and content
 
-1. In SitecoreAI, create a site collection and site named `williams-lea` from the same site template the kit starters use.
-2. Add the WL renderings to the site's **Presentation > Available Renderings**, and create **Headless Variants** for `WlPageBanner` (`Default`, `Article`) and `WlCtaBand` (`Default`, `Subscribe`).
-3. Create the pages, shared datasources and partial designs described in [`content/site-content.json`](content/site-content.json). That file is the content plan executed through the Sitecore MCP; it can also be followed by hand in Pages.
+1. Deploy the branch so the `Project.williams-lea` items and the `kit-nextjs-williams-lea` rendering host exist.
+2. In the SitecoreAI Sites dashboard, create a site named `williams-lea` from the **Empty site** template (collection `demo`).
+3. Wire up the site (done through the Sitecore MCP, or by hand):
+   - Rebase the site's page templates on the CCL bases: `Page` → `{AC9DE9BE-8E86-4147-8FBC-739D5560408B}`, plus `Home Page`, `Detail Page` and `Article Page` templates as in `authoring/spe-scripts/site-2-setup.ps1`.
+   - Set the Site Grouping `RenderingHost` field to `kit-nextjs-williams-lea`.
+   - Add the WL renderings (plus CCL Breadcrumbs and RichText) to **Presentation > Available Renderings**.
+   - Create **Headless Variants** for `WlPageBanner` (`Default`, `Article`) and `WlCtaBand` (`Default`, `Subscribe`).
+   - Create Header and Footer partial designs and a Default page design mapped to all page templates.
+4. Create the pages and datasources described in [`content/site-content.json`](content/site-content.json).
 
 ## Build and run site locally
 
@@ -78,20 +84,7 @@ The module is also picked up automatically by an XM Cloud Deploy build, because 
 
 ## Add Editing host to XM Cloud
 
-Add a rendering host entry for this app to `xmcloud.build.json` at the repository root:
-
-```json
-"kit-nextjs-williams-lea": {
-  "path": "./examples/kit-nextjs-williams-lea",
-  "nodeVersion": "24.22.1",
-  "packageManager": "npm",
-  "jssDeploymentSecret": "<your deployment secret>",
-  "enabled": true,
-  "type": "sxa",
-  "buildCommand": "build",
-  "runCommand": "next:start"
-}
-```
+This app is registered as the `kit-nextjs-williams-lea` rendering host in the root `xmcloud.build.json`. After creating the site, set its rendering host to `kit-nextjs-williams-lea` (Site Grouping item, `RenderingHost` field, or the site's settings in SitecoreAI).
 
 If you have not enabled split deployment, editing hosts are created automatically from `xmcloud.build.json`. With split deployment enabled, add an editing host named `kit-nextjs-williams-lea` in XM Cloud Deploy (Editing Hosts > Add editing host), then run **Build and deploy**.
 

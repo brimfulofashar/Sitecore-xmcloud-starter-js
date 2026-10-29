@@ -5,6 +5,7 @@ import { getDatasource, getFieldValue } from '@/lib/component-props';
 import { NoDataFallback } from '@/utils/NoDataFallback';
 import { ArrowLink, isLinkPopulated } from '@/components/atoms/wl/ArrowLink';
 import { SectionHeading } from '@/components/atoms/wl/SectionHeading';
+import { BrandWaves } from '@/components/atoms/wl/BrandWaves';
 import type { WlSolutionsGridProps } from './wl-solutions-grid.props';
 
 export const Default: React.FC<WlSolutionsGridProps> = ({ fields, page }) => {
@@ -19,23 +20,7 @@ export const Default: React.FC<WlSolutionsGridProps> = ({ fields, page }) => {
 
   return (
     <section className="relative isolate overflow-hidden bg-gradient-to-br from-[#0a1f3d] via-[#004e97] to-[#5b2a86] px-4 py-24 text-white lg:px-8">
-      {/* Decorative wave, echoing the animated backdrop on the source site. */}
-      <svg
-        className="absolute inset-x-0 bottom-0 -z-10 h-1/2 w-full opacity-30"
-        viewBox="0 0 1440 400"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        {Array.from({ length: 14 }).map((_, i) => (
-          <path
-            key={i}
-            d={`M0 ${260 + i * 6} C 360 ${120 + i * 10}, 720 ${380 - i * 4}, 1080 ${200 + i * 8} S 1440 ${240 + i * 5}, 1440 ${240 + i * 5}`}
-            fill="none"
-            stroke="white"
-            strokeWidth="1"
-          />
-        ))}
-      </svg>
+      <BrandWaves className="absolute inset-x-0 bottom-0 -z-10 h-1/2 w-full opacity-30" />
 
       <div className="mx-auto grid max-w-screen-xl gap-12 lg:grid-cols-[2fr_3fr] lg:gap-20">
         <div className="flex flex-col gap-8">

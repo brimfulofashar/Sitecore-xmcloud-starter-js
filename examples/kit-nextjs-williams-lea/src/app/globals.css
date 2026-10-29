@@ -93,3 +93,13 @@
 @utility indent {
   @apply px-8 @md:px-16;
 }
+
+/* Williams Lea hero backdrop: slow horizontal drift of the wave lines. */
+@keyframes wl-wave-drift {
+  from {
+    transform: translateX(-3%) scaleY(1);
+  }
+  to {
+    transform: translateX(3%) scaleY(1.08);
+  }
+}

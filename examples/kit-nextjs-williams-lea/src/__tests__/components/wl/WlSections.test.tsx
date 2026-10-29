@@ -14,14 +14,22 @@ import {
   Article,
 } from '@/components/wl-page-banner/WlPageBanner';
 import { formatCardDate } from '@/components/atoms/wl/InsightCard';
+import { Default as WlHeroVideo } from '@/components/wl-hero-video/WlHeroVideo';
 import { baseProps, image, link, mockPage, text } from './wl.mocks';
 
-jest.mock('@sitecore-content-sdk/nextjs', () => require('./wl.mocks').sdkMock);
+jest.mock(
+  '@sitecore-content-sdk/nextjs',
+  () => jest.requireActual('./wl.mocks').sdkMock,
+);
 jest.mock(
   '@/components/image/ImageWrapper.dev',
-  () => require('./wl.mocks').imageWrapperMock,
+  () => jest.requireActual('./wl.mocks').imageWrapperMock,
 );
-jest.mock('lucide-react', () => require('./wl.mocks').lucideMock);
+jest.mock('lucide-react', () => jest.requireActual('./wl.mocks').lucideMock);
+let mockReducedMotion = false;
+jest.mock('@/hooks/use-media-query', () => ({
+  useMediaQuery: () => mockReducedMotion,
+}));
 jest.mock('@/components/structured-data/StructuredData', () => ({
   StructuredData: ({ id }: { id: string }) => <script data-testid={id} />,
 }));
@@ -299,5 +307,68 @@ describe('WlPageBanner', () => {
     render(<Article {...(props as any)} />);
     expect(screen.getByText('OCT 09, 2026')).toBeInTheDocument();
     expect(screen.getByText('3 Mins Read')).toBeInTheDocument();
+  });
+});
+
+describe('WlHeroVideo', () => {
+  const hero = {
+    eyebrow: text('Transforming Business. Together.'),
+    heading: text('AI-enabled, expert-led Business and Marketing Services'),
+    link: link('Learn more', '/services'),
+  };
+
+  afterEach(() => {
+    mockReducedMotion = false;
+  });
+
+  it('renders the animated brand backdrop when no media is set', () => {
+    const { container } = render(<WlHeroVideo {...(baseProps(hero) as any)} />);
+
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+      'AI-enabled',
+    );
+    expect(container.querySelector('svg g')).toHaveClass(
+      'motion-safe:animate-[wl-wave-drift_18s_ease-in-out_infinite_alternate]',
+    );
+    expect(container.querySelector('video')).not.toBeInTheDocument();
+  });
+
+  it('keeps the backdrop still when the visitor prefers reduced motion', () => {
+    mockReducedMotion = true;
+    const { container } = render(<WlHeroVideo {...(baseProps(hero) as any)} />);
+    expect(
+      container.querySelector('svg g')?.getAttribute('class') ?? '',
+    ).not.toContain('animate');
+  });
+
+  it('plays the video instead of the backdrop when one is set', () => {
+    const { container } = render(
+      <WlHeroVideo
+        {...(baseProps({ ...hero, video: link('', '/media/hero.mp4') }) as any)}
+      />,
+    );
+    expect(container.querySelector('video')).toHaveAttribute(
+      'src',
+      '/media/hero.mp4',
+    );
+    expect(container.querySelector('svg g')).not.toBeInTheDocument();
+  });
+
+  it('skips the video for reduced motion and while editing', () => {
+    mockReducedMotion = true;
+    const props = baseProps({ ...hero, video: link('', '/media/hero.mp4') });
+    const { container, rerender } = render(<WlHeroVideo {...(props as any)} />);
+    expect(container.querySelector('video')).not.toBeInTheDocument();
+
+    mockReducedMotion = false;
+    rerender(
+      <WlHeroVideo
+        {...(baseProps(
+          { ...hero, video: link('', '/media/hero.mp4') },
+          true,
+        ) as any)}
+      />,
+    );
+    expect(container.querySelector('video')).not.toBeInTheDocument();
   });
 });
