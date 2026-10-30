@@ -17,7 +17,7 @@ SharedFields:
       datasource: item(path: $datasource, language: $language) {
         logo: field(name: "logo") { jsonValue }
         link: field(name: "link") { jsonValue }
-        children(first: 100) {
+        children {
           results {
             id
             title: field(name: "title") { jsonValue }
@@ -25,9 +25,8 @@ SharedFields:
             tagline: field(name: "tagline") { jsonValue }
             link: field(name: "link") { jsonValue }
             isUtility: field(name: "isUtility") { jsonValue }
-            children(first: 100) {
+            children(first: 12) {
               results {
-                id
                 link: field(name: "link") { jsonValue }
               }
             }

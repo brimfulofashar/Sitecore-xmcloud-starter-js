@@ -21,7 +21,7 @@ SharedFields:
         body: field(name: "body") { jsonValue }
         link: field(name: "link") { jsonValue }
         image: field(name: "image") { jsonValue }
-        children(first: 100) {
+        children(first: 20) {
           results {
             id
             link: field(name: "link") { jsonValue }

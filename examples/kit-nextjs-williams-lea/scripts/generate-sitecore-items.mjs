@@ -1,24 +1,66 @@
 #!/usr/bin/env node
 /**
- * Generates Sitecore Content Serialization (SCS) YAML for the Williams Lea templates, JSON
- * renderings and "Williams Lea" site template into /authoring/items/williams-lea. The site
- * template's pages and datasources come from content/site-content.json. IDs are derived from
- * item paths, so re-running the script is idempotent and only produces diffs for real changes.
+ * Generates Sitecore Content Serialization (SCS) YAML for a SitecoreAI starter kit:
+ *   - component datasource templates and JSON renderings
+ *   - a site template (a tile in the Sites dashboard) whose setup module builds every page
+ *     and datasource described in content/site-content.json
  *
- * Usage: node scripts/generate-sitecore-items.mjs
- * Then push with: dotnet sitecore ser push -i Project.williams-lea
+ * Copy this file into <app>/scripts/ next to sitecore-kit.config.mjs. Inputs, relative to it:
+ *   ./sitecore-kit.config.mjs                kit identity, component templates, renderings
+ *   ../content/site-content.json              pages, shared datasources, partial designs
+ *   ./assets/site-template-thumbnail.png      tile image
+ * Output: <repo>/authoring/items/<project>/ (picked up by sitecore.json's module glob).
+ *
+ * IDs are derived from item paths, so re-running is idempotent and only produces diffs for
+ * real changes. Usage: node scripts/generate-sitecore-items.mjs
  */
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import {
+    existsSync,
+    mkdirSync,
+    readFileSync,
+    rmSync,
+    writeFileSync,
+} from "node:fs";
+import { dirname, join, relative, resolve } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
-const ROOT = resolve(
-    dirname(fileURLToPath(import.meta.url)),
-    "../../../authoring/items/williams-lea",
-);
+const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
+const APP_DIR = resolve(SCRIPT_DIR, "..");
+const REPO_ROOT = resolve(APP_DIR, "../..");
+const APP_PATH = relative(REPO_ROOT, APP_DIR).split("\\").join("/");
 const TIMESTAMP = "20261029T000000Z";
+
+// ---------------------------------------------------------------------------
+// GraphQL helpers handed to the kit config. Fields are selected with field(name:) aliases so
+// queries do not depend on generated GraphQL type names.
+// ---------------------------------------------------------------------------
+const f = (...names) =>
+    names.map((n) => `${n}: field(name: "${n}") { jsonValue }`).join("\n");
+const indent = (text, depth) => text.replace(/\n/g, `\n${" ".repeat(depth)}`);
+const datasourceQuery = (
+    name,
+    body,
+) => `query ${name}($datasource: String!, $language: String!) {
+  datasource: item(path: $datasource, language: $language) {
+    ${indent(body, 4)}
+  }
+}
+`;
+
+const configModule = await import(
+    pathToFileURL(join(SCRIPT_DIR, "sitecore-kit.config.mjs")).href
+);
+const KIT = configModule.default({ f, indent, datasourceQuery });
+const CONTENT = JSON.parse(
+    readFileSync(join(APP_DIR, "content/site-content.json"), "utf8"),
+);
+const THUMBNAIL = join(SCRIPT_DIR, "assets/site-template-thumbnail.png");
+
+const { project: PROJECT, displayName: DISPLAY_NAME, prefix: PREFIX } = KIT;
+const ROOT = join(REPO_ROOT, "authoring/items", PROJECT);
+const INC = PREFIX.toLowerCase();
 
 // Well-known Sitecore IDs
 const T = {
@@ -58,334 +100,58 @@ const SXA_PARAMETER_BASES = [
 
 const PROJECT_TEMPLATES = "825b30b4-b40b-422e-9920-23a1b6bda89c"; // /sitecore/templates/Project
 const PROJECT_RENDERINGS = "1995806f-0a84-42b5-93b0-88f0e2ff872c"; // /sitecore/layout/Renderings/Project
-const TEMPLATES_PATH = "/sitecore/templates/Project/williams-lea";
-const RENDERINGS_PATH = "/sitecore/layout/Renderings/Project/williams-lea";
+const TEMPLATES_PATH = `/sitecore/templates/Project/${PROJECT}`;
+const RENDERINGS_PATH = `/sitecore/layout/Renderings/Project/${PROJECT}`;
 
 const id = (path) => {
     const h = createHash("md5")
-        .update(`williams-lea:${path.toLowerCase()}`)
+        .update(`${PROJECT}:${path.toLowerCase()}`)
         .digest("hex");
     return `${h.slice(0, 8)}-${h.slice(8, 12)}-4${h.slice(13, 16)}-a${h.slice(17, 20)}-${h.slice(20, 32)}`;
 };
 const braced = (guid) => `{${guid.toUpperCase()}}`;
 
 // ---------------------------------------------------------------------------
-// Template spec
+// Template spec: the kit's templates plus the generated parameters template and data folder.
 // ---------------------------------------------------------------------------
-const SECTION_HEADING = "_WL Section Heading";
 const tpl = (name) => `${TEMPLATES_PATH}/Components/${name}`;
-
+const PARAMETERS_TEMPLATE = `${PREFIX} Rendering Parameters`;
+const DATA_FOLDER_TEMPLATE = `${PREFIX} Data Folder`;
 const TEMPLATES = [
+    ...KIT.templates,
     {
-        name: SECTION_HEADING,
-        icon: "Office/32x32/text_bold.png",
-        fields: [
-            ["eyebrow", "Single-Line Text"],
-            ["heading", "Single-Line Text"],
-            ["subheading", "Multi-Line Text"],
-            ["body", "Rich Text"],
-            ["link", "General Link"],
-        ],
-    },
-    {
-        name: "WL Link Item",
-        icon: "Office/32x32/link.png",
-        fields: [["link", "General Link"]],
-    },
-    {
-        name: "WL Link Group",
-        icon: "Office/32x32/links.png",
-        fields: [
-            ["title", "Single-Line Text"],
-            ["description", "Rich Text"],
-            ["tagline", "Single-Line Text"],
-            ["link", "General Link"],
-        ],
-        insert: ["WL Link Item"],
-    },
-    {
-        name: "WL Nav Item",
-        icon: "Office/32x32/window_dialog.png",
-        bases: ["WL Link Group"],
-        fields: [["isUtility", "Checkbox"]],
-        insert: ["WL Link Item"],
-    },
-    {
-        name: "WL Header",
-        icon: "Office/32x32/window_split_ver.png",
-        fields: [
-            ["logo", "Image"],
-            ["link", "General Link"],
-        ],
-        insert: ["WL Nav Item"],
-    },
-    {
-        name: "WL Footer",
-        icon: "Office/32x32/window_split_hor.png",
-        fields: [
-            ["logo", "Image"],
-            ["heading", "Single-Line Text"],
-            ["link", "General Link"],
-            ["copyright", "Single-Line Text"],
-            ["linkedinLink", "General Link"],
-            ["xLink", "General Link"],
-            ["facebookLink", "General Link"],
-        ],
-        insert: ["WL Link Item"],
-    },
-    {
-        name: "WL Hero Video",
-        icon: "Office/32x32/movie.png",
-        bases: [SECTION_HEADING],
-        fields: [
-            ["video", "General Link"],
-            ["image", "Image"],
-        ],
-    },
-    {
-        name: "WL Service Stack",
-        icon: "Office/32x32/cards.png",
-        bases: [SECTION_HEADING],
-        insert: ["WL Link Group"],
-    },
-    {
-        name: "WL Solutions Grid",
-        icon: "Office/32x32/table.png",
-        bases: [SECTION_HEADING],
-        insert: ["WL Link Item"],
-    },
-    {
-        name: "WL Industries",
-        icon: "Office/32x32/factory.png",
-        bases: [SECTION_HEADING],
-        fields: [["image", "Image"]],
-        insert: ["WL Link Item"],
-    },
-    {
-        name: "WL Tabs",
-        icon: "Office/32x32/tabs.png",
-        bases: [SECTION_HEADING],
-        insert: ["WL Link Group"],
-    },
-    {
-        name: "WL Insight Cards",
-        icon: "Office/32x32/newspaper.png",
-        bases: [SECTION_HEADING],
-        fields: [["items", "Treelist", "query:$home"]],
-    },
-    {
-        name: "WL Insight Listing",
-        icon: "Office/32x32/list.png",
-        bases: [SECTION_HEADING],
-        fields: [["source", "Droptree", "query:$home"]],
-    },
-    {
-        name: "WL CTA Band",
-        icon: "Office/32x32/megaphone.png",
-        bases: [SECTION_HEADING],
-        fields: [["image", "Image"]],
-    },
-    {
-        name: "WL Related Services",
-        icon: "Office/32x32/elements_tree.png",
-        bases: [SECTION_HEADING],
-        insert: ["WL Link Group"],
-    },
-    {
-        name: "WL FAQ Item",
-        icon: "Office/32x32/question_and_answer.png",
-        fields: [
-            ["question", "Single-Line Text"],
-            ["answer", "Rich Text"],
-        ],
-    },
-    {
-        name: "WL FAQ",
-        icon: "Office/32x32/help.png",
-        bases: [SECTION_HEADING],
-        insert: ["WL FAQ Item"],
-    },
-    {
-        name: "WL Rendering Parameters",
+        name: PARAMETERS_TEMPLATE,
         icon: "Office/32x32/gear.png",
         rawBases: SXA_PARAMETER_BASES,
-        fields: [["pageSize", "Integer"]],
+        fields: KIT.parameterFields ?? [],
     },
 ];
-
+const RENDERINGS = KIT.renderings;
+// Integrated GraphQL returns no content at all (isContentResolved: false) when a query exceeds
+// the complexity limit, and `first` multiplies complexity. Flag the shapes known to fail.
+for (const r of RENDERINGS) {
+    const sizes = [...r.query.matchAll(/first:\s*(\d+)/g)].map((m) =>
+        Number(m[1]),
+    );
+    if (sizes.some((n) => n > 20)) {
+        console.warn(
+            `${r.name}: first > 20 is likely to exceed the GraphQL complexity limit.`,
+        );
+    }
+    if (sizes.length > 1 && (r.query.match(/children/g) ?? []).length > 1) {
+        console.warn(
+            `${r.name}: nested lists with first: on more than one level are likely to exceed the limit.`,
+        );
+    }
+}
 const DATASOURCE_ROOTS = [
-    "WL Header",
-    "WL Footer",
-    "WL Hero Video",
-    "WL Service Stack",
-    "WL Solutions Grid",
-    "WL Industries",
-    "WL Tabs",
-    "WL Insight Cards",
-    "WL Insight Listing",
-    "WL CTA Band",
-    "WL Related Services",
-    "WL FAQ",
+    ...new Set(RENDERINGS.filter((r) => r.datasource).map((r) => r.datasource)),
 ];
 TEMPLATES.push({
-    name: "WL Data Folder",
+    name: DATA_FOLDER_TEMPLATE,
     icon: "Office/32x32/folder_window.png",
-    insert: [...DATASOURCE_ROOTS, "WL Data Folder"],
+    insert: [...DATASOURCE_ROOTS, DATA_FOLDER_TEMPLATE],
 });
-
-// ---------------------------------------------------------------------------
-// Integrated GraphQL. Fields are selected with field(name:) aliases so queries do not
-// depend on generated GraphQL type names.
-// ---------------------------------------------------------------------------
-const f = (...names) =>
-    names.map((n) => `${n}: field(name: "${n}") { jsonValue }`).join("\n");
-const HEADING = f("eyebrow", "heading", "subheading", "body", "link");
-const LINK_ITEMS = `children(first: 100) {\n  results {\n    id\n    ${f("link")}\n  }\n}`;
-const LINK_GROUPS = `children(first: 100) {
-  results {
-    id
-    ${f("title", "description", "tagline", "link", "isUtility").replace(/\n/g, "\n    ")}
-    ${LINK_ITEMS.replace(/\n/g, "\n    ")}
-  }
-}`;
-const PAGE_CARD = `id\nurl { path }\n${f("pageTitle", "pageSummary", "pageThumbnail", "pageDisplayDate", "pageReadTime")}`;
-
-const indent = (text, depth) => text.replace(/\n/g, `\n${" ".repeat(depth)}`);
-const datasourceQuery = (
-    name,
-    body,
-) => `query ${name}($datasource: String!, $language: String!) {
-  datasource: item(path: $datasource, language: $language) {
-    ${indent(body, 4)}
-  }
-}
-`;
-
-const RENDERINGS = [
-    {
-        name: "WL Header",
-        component: "WlHeader",
-        icon: "Office/32x32/window_split_ver.png",
-        datasource: "WL Header",
-        query: datasourceQuery(
-            "WlHeader",
-            `${f("logo", "link")}\n${LINK_GROUPS}`,
-        ),
-    },
-    {
-        name: "WL Footer",
-        component: "WlFooter",
-        icon: "Office/32x32/window_split_hor.png",
-        datasource: "WL Footer",
-        query: datasourceQuery(
-            "WlFooter",
-            `${f("logo", "heading", "link", "copyright", "linkedinLink", "xLink", "facebookLink")}\n${LINK_ITEMS}`,
-        ),
-    },
-    {
-        name: "WL Hero Video",
-        component: "WlHeroVideo",
-        icon: "Office/32x32/movie.png",
-        datasource: "WL Hero Video",
-        query: datasourceQuery(
-            "WlHeroVideo",
-            `${HEADING}\n${f("video", "image")}`,
-        ),
-    },
-    {
-        name: "WL Service Stack",
-        component: "WlServiceStack",
-        icon: "Office/32x32/cards.png",
-        datasource: "WL Service Stack",
-        query: datasourceQuery("WlServiceStack", `${HEADING}\n${LINK_GROUPS}`),
-    },
-    {
-        name: "WL Solutions Grid",
-        component: "WlSolutionsGrid",
-        icon: "Office/32x32/table.png",
-        datasource: "WL Solutions Grid",
-        query: datasourceQuery("WlSolutionsGrid", `${HEADING}\n${LINK_ITEMS}`),
-    },
-    {
-        name: "WL Industries",
-        component: "WlIndustries",
-        icon: "Office/32x32/factory.png",
-        datasource: "WL Industries",
-        query: datasourceQuery(
-            "WlIndustries",
-            `${HEADING}\n${f("image")}\n${LINK_ITEMS}`,
-        ),
-    },
-    {
-        name: "WL Tabs",
-        component: "WlTabs",
-        icon: "Office/32x32/tabs.png",
-        datasource: "WL Tabs",
-        query: datasourceQuery("WlTabs", `${HEADING}\n${LINK_GROUPS}`),
-    },
-    {
-        name: "WL Insight Cards",
-        component: "WlInsightCards",
-        icon: "Office/32x32/newspaper.png",
-        datasource: "WL Insight Cards",
-        query: datasourceQuery(
-            "WlInsightCards",
-            `${HEADING}\nitems: field(name: "items") {\n  ... on MultilistField {\n    targetItems {\n      ${indent(PAGE_CARD, 6)}\n    }\n  }\n}`,
-        ),
-    },
-    {
-        name: "WL Insight Listing",
-        component: "WlInsightListing",
-        icon: "Office/32x32/list.png",
-        datasource: "WL Insight Listing",
-        query: datasourceQuery(
-            "WlInsightListing",
-            `${HEADING}\nsource: field(name: "source") {\n  ... on LookupField {\n    targetItem {\n      children(hasLayout: true, first: 100) {\n        results {\n          ${indent(PAGE_CARD, 10)}\n        }\n      }\n    }\n  }\n}`,
-        ),
-    },
-    {
-        name: "WL Page Banner",
-        component: "WlPageBanner",
-        icon: "Office/32x32/window_size.png",
-        canSelectPage: true,
-        query: `query WlPageBanner($contextItem: String!, $language: String!) {
-  externalFields: item(path: $contextItem, language: $language) {
-    ${indent(f("pageTitle", "pageHeaderTitle", "pageSubtitle", "pageSummary", "pageThumbnail", "pageDisplayDate", "pageReadTime"), 4)}
-    parent {
-      ${f("pageTitle")}
-    }
-  }
-}
-`,
-    },
-    {
-        name: "WL CTA Band",
-        component: "WlCtaBand",
-        icon: "Office/32x32/megaphone.png",
-        datasource: "WL CTA Band",
-        query: datasourceQuery("WlCtaBand", `${HEADING}\n${f("image")}`),
-    },
-    {
-        name: "WL Related Services",
-        component: "WlRelatedServices",
-        icon: "Office/32x32/elements_tree.png",
-        datasource: "WL Related Services",
-        query: datasourceQuery(
-            "WlRelatedServices",
-            `${HEADING}\n${LINK_GROUPS}`,
-        ),
-    },
-    {
-        name: "WL FAQ",
-        component: "WlFaq",
-        icon: "Office/32x32/help.png",
-        datasource: "WL FAQ",
-        query: datasourceQuery(
-            "WlFaq",
-            `${HEADING}\nchildren(first: 100) {\n  results {\n    id\n    ${indent(f("question", "answer"), 4)}\n  }\n}`,
-        ),
-    },
-];
 
 // ---------------------------------------------------------------------------
 // YAML emitter
@@ -434,6 +200,8 @@ const item = ({
     files.push({ file: join(ROOT, "items", include, `${relPath}.yml`), yml });
 };
 
+const TEMPLATES_INC = `${INC}.templates`;
+const RENDERINGS_INC = `${INC}.renderings`;
 const folder = (include, rootPath, path, template) => {
     const name = path.split("/").pop();
     const parentPath = path.slice(0, path.lastIndexOf("/"));
@@ -443,7 +211,7 @@ const folder = (include, rootPath, path, template) => {
         itemId: id(path),
         parent:
             path === rootPath
-                ? include === "wl.templates"
+                ? include === TEMPLATES_INC
                     ? PROJECT_TEMPLATES
                     : PROJECT_RENDERINGS
                 : id(parentPath),
@@ -454,9 +222,9 @@ const folder = (include, rootPath, path, template) => {
 };
 
 // Templates
-folder("wl.templates", TEMPLATES_PATH, TEMPLATES_PATH, T.templateFolder);
+folder(TEMPLATES_INC, TEMPLATES_PATH, TEMPLATES_PATH, T.templateFolder);
 folder(
-    "wl.templates",
+    TEMPLATES_INC,
     TEMPLATES_PATH,
     `${TEMPLATES_PATH}/Components`,
     T.templateFolder,
@@ -473,7 +241,7 @@ for (const t of TEMPLATES) {
     const rel = path.slice(TEMPLATES_PATH.lastIndexOf("/") + 1);
 
     item({
-        include: "wl.templates",
+        include: TEMPLATES_INC,
         relPath: rel,
         itemId: tid,
         parent: id(`${TEMPLATES_PATH}/Components`),
@@ -490,7 +258,7 @@ for (const t of TEMPLATES) {
         ],
     });
     item({
-        include: "wl.templates",
+        include: TEMPLATES_INC,
         relPath: `${rel}/__Standard Values`,
         itemId: svId,
         parent: tid,
@@ -510,7 +278,7 @@ for (const t of TEMPLATES) {
     if (t.fields?.length) {
         const sectionPath = `${path}/Content`;
         item({
-            include: "wl.templates",
+            include: TEMPLATES_INC,
             relPath: `${rel}/Content`,
             itemId: id(sectionPath),
             parent: tid,
@@ -525,7 +293,7 @@ for (const t of TEMPLATES) {
             ];
             if (fsource) shared.push([F.source, "Source", fsource]);
             item({
-                include: "wl.templates",
+                include: TEMPLATES_INC,
                 relPath: `${rel}/Content/${fname}`,
                 itemId: id(fieldPath),
                 parent: id(sectionPath),
@@ -547,8 +315,8 @@ for (const t of TEMPLATES) {
 }
 
 // Renderings
-folder("wl.renderings", RENDERINGS_PATH, RENDERINGS_PATH, T.renderingFolder);
-const PARAMS_ID = braced(id(tpl("WL Rendering Parameters")));
+folder(RENDERINGS_INC, RENDERINGS_PATH, RENDERINGS_PATH, T.renderingFolder);
+const PARAMS_ID = braced(id(tpl(PARAMETERS_TEMPLATE)));
 RENDERINGS.forEach((r, i) => {
     const path = `${RENDERINGS_PATH}/${r.name}`;
     const shared = [
@@ -569,15 +337,15 @@ RENDERINGS.forEach((r, i) => {
             [
                 F.datasourceLocation,
                 "Datasource Location",
-                "query:$site/*[@@name='Data']/*[@@templatename='WL Data Folder']|query:$site/*[@@name='Data']",
+                `query:$site/*[@@name='Data']/*[@@templatename='${DATA_FOLDER_TEMPLATE}']|query:$site/*[@@name='Data']`,
             ],
         );
     }
     if (r.canSelectPage)
         shared.push([F.canSelectPage, "Can select Page as a data source", 1]);
     item({
-        include: "wl.renderings",
-        relPath: `williams-lea/${r.name}`,
+        include: RENDERINGS_INC,
+        relPath: `${PROJECT}/${r.name}`,
         itemId: id(path),
         parent: id(RENDERINGS_PATH),
         template: T.jsonRendering,
@@ -587,38 +355,27 @@ RENDERINGS.forEach((r, i) => {
 });
 
 // ---------------------------------------------------------------------------
-// Site template: the "Williams Lea" tile in the SitecoreAI Sites dashboard. Mirrors the
-// click-click-launch kits: a Site Template item, a setup module of Add Item steps backed by
-// branch templates, and SPE scripts that rebase page templates and resolve cross-item links.
+// Site template: the tile in the SitecoreAI Sites dashboard. Mirrors the click-click-launch
+// kits: a Site Template item, a setup module of Add Item steps backed by branch templates, and
+// SPE scripts that rebase page templates and resolve cross-item links.
 // Branch content cannot hold real IDs for items that only exist once the site is created, so
 // it carries tokens that the setup script resolves:
 //   @@WL:/Home/Services@@                     -> ID of <site>/Home/Services
-//   @@WLV:WL Page Banner/Article@@            -> URL-encoded ID of that headless variant
+//   @@WLV:<Rendering name>/<Variant>@@        -> URL-encoded ID of that headless variant
 // ---------------------------------------------------------------------------
-const CONTENT = JSON.parse(
-    readFileSync(
-        resolve(
-            dirname(fileURLToPath(import.meta.url)),
-            "../content/site-content.json",
-        ),
-        "utf8",
-    ),
-);
-const THUMBNAIL = resolve(
-    dirname(fileURLToPath(import.meta.url)),
-    "assets/site-template-thumbnail.png",
-);
-
-const BRANCHES_PATH = "/sitecore/templates/Branches/Project/williams-lea";
-const SETTINGS_PATH = "/sitecore/system/Settings/Project/williams-lea";
-const SPE_PATH =
-    "/sitecore/system/Modules/PowerShell/Script Library/Williams Lea";
-const MEDIA_PATH = "/sitecore/media library/Feature/williams-lea";
+const BRANCHES_PATH = `/sitecore/templates/Branches/Project/${PROJECT}`;
+const SETTINGS_PATH = `/sitecore/system/Settings/Project/${PROJECT}`;
+const SPE_PATH = `/sitecore/system/Modules/PowerShell/Script Library/${DISPLAY_NAME}`;
+const MEDIA_PATH = `/sitecore/media library/Feature/${PROJECT}`;
+const BRANCHES_INC = `${INC}.branches`;
+const SETTINGS_INC = `${INC}.settings`;
+const SPE_INC = `${INC}.powershell`;
+const MEDIA_INC = `${INC}.media`;
 const ROOT_PARENTS = {
-    "wl.branches": "a1f6469d-16e1-4a5f-9e49-1aad869a5d11", // /sitecore/templates/Branches/Project
-    "wl.settings": "0af56f64-b5d7-473f-9497-1dc19265e494", // /sitecore/system/Settings/Project
-    "wl.powershell": "a3572733-5062-43e9-a447-54698bc1c637", // SPE Script Library
-    "wl.media": "aa12eeae-d925-4569-bc39-6092c745fc05", // /sitecore/media library/Feature
+    [BRANCHES_INC]: "a1f6469d-16e1-4a5f-9e49-1aad869a5d11", // /sitecore/templates/Branches/Project
+    [SETTINGS_INC]: "0af56f64-b5d7-473f-9497-1dc19265e494", // /sitecore/system/Settings/Project
+    [SPE_INC]: "a3572733-5062-43e9-a447-54698bc1c637", // SPE Script Library
+    [MEDIA_INC]: "aa12eeae-d925-4569-bc39-6092c745fc05", // /sitecore/media library/Feature
 };
 const S = {
     branchFolder: "85adbf5b-e836-4932-a333-fe0f9fa1ed1e",
@@ -641,9 +398,17 @@ const S = {
     pageData: "1c82e550-ebcd-4e5d-8abd-d50d0809541e",
     mediaFolder: "fe5dd826-48c6-436d-b87a-7c4210c7413b",
     image: "f1828a2c-7e5d-4bbd-98ca-320474871548",
-    cclDetailPage: "a9919790-3389-4fc2-abc8-24f73c847c8e",
-    cclArticlePage: "b0602368-f67c-433c-8700-862d480546d0",
     cclText: "58041043-7bea-44f0-b1b8-08e4ea7054f4",
+};
+// Page templates a site can use, keyed by the content plan's "template" value. Each becomes a
+// site template inheriting the click-click-launch (CCL) base of the same name.
+const CCL_HOME_PAGE = "4accf644-a506-421f-b60f-a05e5c6196b4";
+const PAGE_TYPES = {
+    "Detail Page": "a9919790-3389-4fc2-abc8-24f73c847c8e",
+    "Article Page": "b0602368-f67c-433c-8700-862d480546d0",
+    "Landing Page": "c3c9fc9e-e7d3-44e6-b777-aa23496924c7",
+    "Product Page": "9a52202d-3a77-4f6d-b9bd-6aeced9bd49a",
+    "Page Folder": "84dbe64b-0fed-4125-a971-725c0155c321",
 };
 const SF = {
     location: "52c91c75-6698-4701-a8a2-242ace59a8d6",
@@ -731,7 +496,7 @@ const node = (include, rootPath, path, template, opts = {}) =>
     });
 const sortorder = (i) => [F.sortorder, "__Sortorder", (i + 1) * 100];
 
-// Field lookup across the WL template spec (including base templates) plus the CCL Text template.
+// Field lookup across the kit's template spec (including base templates) plus CCL Text.
 const TEMPLATE_SPEC = Object.fromEntries(TEMPLATES.map((t) => [t.name, t]));
 const CCL_TEXT = "Text (CCL)";
 const templateId = (name) => (name === CCL_TEXT ? S.cclText : id(tpl(name)));
@@ -741,19 +506,24 @@ const fieldOf = (templateName, fieldName) => {
             ? { id: SF.cclText, type: "Rich Text" }
             : null;
     const t = TEMPLATE_SPEC[templateName];
-    const own = t?.fields?.find(([n]) => n === fieldName);
+    if (!t)
+        throw new Error(
+            `Unknown template "${templateName}" in site-content.json`,
+        );
+    const own = t.fields?.find(([n]) => n === fieldName);
     if (own)
         return {
             id: id(`${tpl(templateName)}/Content/${fieldName}`),
             type: own[1],
         };
-    for (const base of t?.bases ?? []) {
+    for (const base of t.bases ?? []) {
         const found = fieldOf(base, fieldName);
         if (found) return found;
     }
     return null;
 };
 
+// CCL renderings that kits commonly reuse alongside their own.
 const RENDERING_IDS = {
     ...Object.fromEntries(
         RENDERINGS.map((r) => [
@@ -816,8 +586,10 @@ const fieldValue = (type, value) => {
         case "Checkbox":
             return value ? "1" : "";
         case "Treelist":
+        case "Multilist":
             return value.map((p) => itemToken(pageRef(p))).join("|");
         case "Droptree":
+        case "Droplink":
             return itemToken(pageRef(value));
         case "Image":
             return null; // No brand media ships with the template; components fall back gracefully.
@@ -855,12 +627,12 @@ const datasourceItem = (
         const [name, tName, cFields, cChildren] = Array.isArray(child)
             ? [
                   child[0],
-                  "WL Link Item",
+                  KIT.linkItemTemplate,
                   { link: { text: child[0], href: child[1] } },
                   [],
               ]
             : child.question
-              ? [`Question ${i + 1}`, "WL FAQ Item", child, []]
+              ? [`Question ${i + 1}`, KIT.faqItemTemplate, child, []]
               : [child.name, child.template, child.fields, child.children];
         let safe = itemName(name);
         while (used.has(safe.toLowerCase())) safe += " 2";
@@ -884,6 +656,10 @@ const layoutXml = (ownerPath, placements) => {
     ];
     let previous;
     placements.forEach((p, i) => {
+        if (!RENDERING_IDS[p.rendering])
+            throw new Error(
+                `Unknown rendering "${p.rendering}" on ${ownerPath}`,
+            );
         const uid = braced(id(`${ownerPath}#rendering-${i}`));
         const fieldNames =
             p.variant && p.variant !== "Default"
@@ -901,7 +677,7 @@ const layoutXml = (ownerPath, placements) => {
     return `${lines.join("\n")}\n`;
 };
 
-const SHARED_FOLDER = "Williams Lea";
+const SHARED_FOLDER = DISPLAY_NAME;
 const sharedToken = (name) => itemToken(`/Data/${SHARED_FOLDER}/${name}`);
 const inlineOwner = new Map(); // inline datasource name -> owning page path (for reuseDatasource)
 CONTENT.pages.forEach((p) =>
@@ -913,11 +689,18 @@ CONTENT.pages.forEach((p) =>
 const componentsOf = (page) => {
     if (!page.stubOf) return page.components ?? [];
     const source = CONTENT.pages.find((p) => p.path === page.stubOf);
+    if (!source)
+        throw new Error(
+            `stubOf "${page.stubOf}" on ${page.path} is not a page`,
+        );
     return source.components
         .map((c) => {
             if (!c.datasource) return c;
-            return c.rendering === "WL CTA Band"
-                ? { rendering: c.rendering, sharedDatasource: "Contact CTA" }
+            return c.rendering === KIT.ctaRendering && KIT.defaultCtaDatasource
+                ? {
+                      rendering: c.rendering,
+                      sharedDatasource: KIT.defaultCtaDatasource,
+                  }
                 : null;
         })
         .filter(Boolean);
@@ -932,11 +715,12 @@ const branchPathOf = (pagePath) =>
 let homeLayout = "";
 const pageFields = {};
 const usedShared = new Set();
+const usedPageTypes = new Set();
 const siblingIndex = new Map();
 const dataFolders = new Set();
 
-node("wl.branches", BRANCHES_PATH, BRANCHES_PATH, S.branchFolder);
-node("wl.branches", BRANCHES_PATH, ADD_PAGES, S.branch);
+node(BRANCHES_INC, BRANCHES_PATH, BRANCHES_PATH, S.branchFolder);
+node(BRANCHES_INC, BRANCHES_PATH, ADD_PAGES, S.branch);
 for (const page of CONTENT.pages) {
     const branchPath = branchPathOf(page.path);
     const placements = componentsOf(page).map((c) => {
@@ -944,7 +728,7 @@ for (const page of CONTENT.pages) {
             if (!dataFolders.has(branchPath)) {
                 dataFolders.add(branchPath);
                 node(
-                    "wl.branches",
+                    BRANCHES_INC,
                     BRANCHES_PATH,
                     `${branchPath}/Data`,
                     S.pageData,
@@ -954,7 +738,7 @@ for (const page of CONTENT.pages) {
             const ds = c.datasource;
             const dsTemplate = ds.template ?? DATASOURCE_TEMPLATES[c.rendering];
             datasourceItem(
-                "wl.branches",
+                BRANCHES_INC,
                 BRANCHES_PATH,
                 `${branchPath}/Data/${ds.name}`,
                 dsTemplate,
@@ -964,6 +748,11 @@ for (const page of CONTENT.pages) {
             return { ...c, ds: `local:/Data/${ds.name}`, ph: "headless-main" };
         }
         if (c.sharedDatasource) {
+            if (!CONTENT.sharedDatasources[c.sharedDatasource]) {
+                throw new Error(
+                    `Shared datasource "${c.sharedDatasource}" on ${page.path} is not defined`,
+                );
+            }
             usedShared.add(c.sharedDatasource);
             return {
                 ...c,
@@ -989,34 +778,33 @@ for (const page of CONTENT.pages) {
         homeLayout = layout; // Home is created by the site scaffolding; the setup script applies its layout.
         continue;
     }
+    if (!PAGE_TYPES[page.template])
+        throw new Error(
+            `Unknown page template "${page.template}" on ${page.path}`,
+        );
+    usedPageTypes.add(page.template);
     const parent = page.path.slice(0, page.path.lastIndexOf("/"));
     const index = siblingIndex.get(parent) ?? 0;
     siblingIndex.set(parent, index + 1);
-    node(
-        "wl.branches",
-        BRANCHES_PATH,
-        branchPath,
-        page.template === "Article Page" ? S.cclArticlePage : S.cclDetailPage,
-        {
-            shared: [sortorder(index)],
-            versioned: [[SF.finalRenderings, "__Final Renderings", layout]],
-        },
-    );
+    node(BRANCHES_INC, BRANCHES_PATH, branchPath, PAGE_TYPES[page.template], {
+        shared: [sortorder(index)],
+        versioned: [[SF.finalRenderings, "__Final Renderings", layout]],
+    });
 }
 
-// Branch: shared datasources in <site>/Data/Williams Lea.
+// Branch: shared datasources in <site>/Data/<display name>.
 const ADD_SHARED = `${BRANCHES_PATH}/Add Shared Data`;
-node("wl.branches", BRANCHES_PATH, ADD_SHARED, S.branch);
+node(BRANCHES_INC, BRANCHES_PATH, ADD_SHARED, S.branch);
 node(
-    "wl.branches",
+    BRANCHES_INC,
     BRANCHES_PATH,
     `${ADD_SHARED}/${SHARED_FOLDER}`,
-    id(tpl("WL Data Folder")),
+    id(tpl(DATA_FOLDER_TEMPLATE)),
 );
 [...usedShared].forEach((name, i) => {
     const ds = CONTENT.sharedDatasources[name];
     datasourceItem(
-        "wl.branches",
+        BRANCHES_INC,
         BRANCHES_PATH,
         `${ADD_SHARED}/${SHARED_FOLDER}/${name}`,
         ds.template,
@@ -1028,9 +816,9 @@ node(
 
 // Branch: Header and Footer partial designs, each with local datasources.
 const ADD_PARTIALS = `${BRANCHES_PATH}/Add Partial Designs`;
-node("wl.branches", BRANCHES_PATH, ADD_PARTIALS, S.branch);
+node(BRANCHES_INC, BRANCHES_PATH, ADD_PARTIALS, S.branch);
 node(
-    "wl.branches",
+    BRANCHES_INC,
     BRANCHES_PATH,
     `${ADD_PARTIALS}/Global`,
     S.partialDesignFolder,
@@ -1050,12 +838,15 @@ Object.entries(CONTENT.partialDesigns).forEach(([placeholder, entries], i) => {
     const name = signature.charAt(0).toUpperCase() + signature.slice(1);
     const designPath = `${ADD_PARTIALS}/Global/${name}`;
     const placements = entries.map((entry, j) => {
-        const [, rendering, variant, dsName] = entry.match(
-            /^(.+?)(?: \((\w+)\))? -> (.+)$/,
-        );
+        const match = entry.match(/^(.+?)(?: \((\w+)\))? -> (.+)$/);
+        if (!match)
+            throw new Error(
+                `Partial design entry "${entry}" must look like "Rendering (Variant) -> Datasource"`,
+            );
+        const [, rendering, variant, dsName] = match;
         const ds = CONTENT.sharedDatasources[dsName];
         datasourceItem(
-            "wl.branches",
+            BRANCHES_INC,
             BRANCHES_PATH,
             `${designPath}/Data/${dsName}`,
             ds.template,
@@ -1071,7 +862,7 @@ Object.entries(CONTENT.partialDesigns).forEach(([placeholder, entries], i) => {
             ph: placeholder,
         };
     });
-    node("wl.branches", BRANCHES_PATH, designPath, S.partialDesign, {
+    node(BRANCHES_INC, BRANCHES_PATH, designPath, S.partialDesign, {
         shared: [[SF.signature, "Signature", signature], sortorder(i)],
         versioned: [
             [
@@ -1081,15 +872,15 @@ Object.entries(CONTENT.partialDesigns).forEach(([placeholder, entries], i) => {
             ],
         ],
     });
-    node("wl.branches", BRANCHES_PATH, `${designPath}/Data`, S.pageData);
+    node(BRANCHES_INC, BRANCHES_PATH, `${designPath}/Data`, S.pageData);
 });
 
 // Branch: headless variants, named after the renderings they apply to.
 const ADD_VARIANTS = `${BRANCHES_PATH}/Add Rendering Variants`;
-node("wl.branches", BRANCHES_PATH, ADD_VARIANTS, S.branch);
+node(BRANCHES_INC, BRANCHES_PATH, ADD_VARIANTS, S.branch);
 [...variantsUsed].forEach(([rendering, variants], i) => {
     node(
-        "wl.branches",
+        BRANCHES_INC,
         BRANCHES_PATH,
         `${ADD_VARIANTS}/${rendering}`,
         S.variantsFolder,
@@ -1097,7 +888,7 @@ node("wl.branches", BRANCHES_PATH, ADD_VARIANTS, S.branch);
     );
     [...variants].forEach((v, j) =>
         node(
-            "wl.branches",
+            BRANCHES_INC,
             BRANCHES_PATH,
             `${ADD_VARIANTS}/${rendering}/${v}`,
             S.variant,
@@ -1108,11 +899,11 @@ node("wl.branches", BRANCHES_PATH, ADD_VARIANTS, S.branch);
 
 // Branch: Available Renderings for the Pages component gallery.
 const ADD_AVAILABLE = `${BRANCHES_PATH}/Add Available Renderings`;
-node("wl.branches", BRANCHES_PATH, ADD_AVAILABLE, S.branch);
+node(BRANCHES_INC, BRANCHES_PATH, ADD_AVAILABLE, S.branch);
 node(
-    "wl.branches",
+    BRANCHES_INC,
     BRANCHES_PATH,
-    `${ADD_AVAILABLE}/Williams Lea`,
+    `${ADD_AVAILABLE}/${DISPLAY_NAME}`,
     S.availableRenderings,
     {
         shared: [
@@ -1136,13 +927,16 @@ const RENDERING_HOST_SCRIPT = `function Invoke-Step {
     process {
         [Item]$SiteLocation = $Model.SiteLocation
         $sitePath = "$($SiteLocation.Paths.Path)/$($Model.SiteName)"
-        Write-Log "Williams Lea: set rendering host for $sitePath" -Log "INFO"
+        Write-Log "${DISPLAY_NAME}: set rendering host for $sitePath" -Log "INFO"
         $siteGrouping = Get-Item -Path "$sitePath/Settings/Site Grouping/$($Model.SiteName)"
         $siteGrouping.RenderingHost = "${CONTENT.site.renderingHost}"
     }
 }
 `;
-const SITE_SETUP_SCRIPT = `# Generated by examples/kit-nextjs-williams-lea/scripts/generate-sitecore-items.mjs. Edit the generator, not this item.
+const pageTypes = Object.keys(PAGE_TYPES).filter((t) => usedPageTypes.has(t));
+const psVar = (typeName) =>
+    `$${typeName.charAt(0).toLowerCase()}${typeName.slice(1).replace(/ /g, "")}Template`;
+const SITE_SETUP_SCRIPT = `# Generated by ${APP_PATH}/scripts/generate-sitecore-items.mjs. Edit the generator, not this item.
 Import-Function Update-PageTemplate
 Import-Function Update-TemplateInsertOptions
 
@@ -1190,11 +984,15 @@ function Invoke-ModuleScriptBody {
         $templatesRootPath = "master:/sitecore/templates/Project/$($siteCollection.Name)"
         $pageTemplate = Get-Item -Path "$templatesRootPath/Page"
         $pageTemplate."__Base template" = "{AC9DE9BE-8E86-4147-8FBC-739D5560408B}"
-        $homePageTemplate = Update-PageTemplate -BaseTemplateId "{4ACCF644-A506-421F-B60F-A05E5C6196B4}" -TemplateName "Home Page" -TemplatesRootPath $templatesRootPath
-        $detailPageTemplate = Update-PageTemplate -BaseTemplateId "${braced(S.cclDetailPage)}" -TemplateName "Detail Page" -TemplatesRootPath $templatesRootPath
-        $articlePageTemplate = Update-PageTemplate -BaseTemplateId "${braced(S.cclArticlePage)}" -TemplateName "Article Page" -TemplatesRootPath $templatesRootPath
-        $insertOptions = @( $detailPageTemplate.ID, $articlePageTemplate.ID )
-        foreach ($template in @($homePageTemplate, $detailPageTemplate, $articlePageTemplate)) {
+        $homePageTemplate = Update-PageTemplate -BaseTemplateId "${braced(CCL_HOME_PAGE)}" -TemplateName "Home Page" -TemplatesRootPath $templatesRootPath
+${pageTypes
+    .map(
+        (t) =>
+            `        ${psVar(t)} = Update-PageTemplate -BaseTemplateId "${braced(PAGE_TYPES[t])}" -TemplateName "${t}" -TemplatesRootPath $templatesRootPath`,
+    )
+    .join("\n")}
+        $insertOptions = @( ${pageTypes.map((t) => `${psVar(t)}.ID`).join(", ")} )
+        foreach ($template in @(${["$homePageTemplate", ...pageTypes.map(psVar)].join(", ")})) {
             Update-TemplateInsertOptions -TemplateItem $template -InsertOptions $insertOptions
         }
 
@@ -1205,7 +1003,7 @@ function Invoke-ModuleScriptBody {
         $defaultPageDesign.PartialDesigns = "$($headerPartial.ID)|$($footerPartial.ID)"
         $pageDesigns = Get-Item -Path "$sitePath/Presentation/Page Designs" -Language $language
         $map = [Sitecore.Text.UrlString]::new()
-        foreach ($template in @($pageTemplate, $homePageTemplate, $detailPageTemplate, $articlePageTemplate)) {
+        foreach ($template in @(${["$pageTemplate", "$homePageTemplate", ...pageTypes.map(psVar)].join(", ")})) {
             $map[$template.ID] = "$($defaultPageDesign.ID)"
         }
         $pageDesigns.TemplatesMapping = [System.Web.HttpUtility]::UrlEncode($map.ToString())
@@ -1213,8 +1011,7 @@ function Invoke-ModuleScriptBody {
         Write-Verbose "Move pages from the base templates to the site page templates"
         Set-ItemTemplate -Item $homeItem -Template $homePageTemplate.ID
         $templateMap = @{
-            "${braced(S.cclDetailPage)}" = $detailPageTemplate.ID
-            "${braced(S.cclArticlePage)}" = $articlePageTemplate.ID
+${pageTypes.map((t) => `            "${braced(PAGE_TYPES[t])}" = ${psVar(t)}.ID`).join("\n")}
         }
         foreach ($page in @(Get-ChildItem -Path "$sitePath/Home" -Recurse -Language $language)) {
             $key = $page.TemplateID.ToString()
@@ -1282,47 +1079,47 @@ ${JSON.stringify(pageFields)}
     }
 }
 `;
-const SITE_SETUP_SCRIPT_PATH = `${SPE_PATH}/Functions/Williams Lea Site Setup`;
-const RENDERING_HOST_SCRIPT_PATH = `${SPE_PATH}/Functions/Williams Lea Configure Rendering Host`;
-node("wl.powershell", SPE_PATH, SPE_PATH, S.speModule, {
+const SITE_SETUP_SCRIPT_PATH = `${SPE_PATH}/Functions/${DISPLAY_NAME} Site Setup`;
+const RENDERING_HOST_SCRIPT_PATH = `${SPE_PATH}/Functions/${DISPLAY_NAME} Configure Rendering Host`;
+node(SPE_INC, SPE_PATH, SPE_PATH, S.speModule, {
     shared: [
         [F.icon, "__Icon", "Office/32x32/jar_coffee_bean.png"],
         [SF.speEnabled, "Enabled", 1],
     ],
 });
-node("wl.powershell", SPE_PATH, `${SPE_PATH}/Functions`, S.speFolder);
-node("wl.powershell", SPE_PATH, SITE_SETUP_SCRIPT_PATH, S.speScript, {
+node(SPE_INC, SPE_PATH, `${SPE_PATH}/Functions`, S.speFolder);
+node(SPE_INC, SPE_PATH, SITE_SETUP_SCRIPT_PATH, S.speScript, {
     shared: [[SF.speScript, "Script", SITE_SETUP_SCRIPT]],
 });
-node("wl.powershell", SPE_PATH, RENDERING_HOST_SCRIPT_PATH, S.speScript, {
+node(SPE_INC, SPE_PATH, RENDERING_HOST_SCRIPT_PATH, S.speScript, {
     shared: [[SF.speScript, "Script", RENDERING_HOST_SCRIPT]],
 });
 
 // Setup module: Add Item steps first, then the setup script, then the rendering host.
-const SETUP_PATH = `${SETTINGS_PATH}/Williams Lea Setup`;
-node("wl.settings", SETTINGS_PATH, SETTINGS_PATH, S.settingsFolder);
-node("wl.settings", SETTINGS_PATH, SETUP_PATH, S.setupModule, {
+const SETUP_PATH = `${SETTINGS_PATH}/${DISPLAY_NAME} Setup`;
+node(SETTINGS_INC, SETTINGS_PATH, SETTINGS_PATH, S.settingsFolder);
+node(SETTINGS_INC, SETTINGS_PATH, SETUP_PATH, S.setupModule, {
     shared: [[SF.dependencies, "Dependencies", idList(SETUP_DEPENDENCIES)]],
-    versioned: [[SF.moduleName, "Name", "Williams Lea"]],
+    versioned: [[SF.moduleName, "Name", DISPLAY_NAME]],
 });
 [
     [
         "Add Available Renderings",
         LOCATION.availableRenderings,
-        "Williams Lea",
+        DISPLAY_NAME,
         ADD_AVAILABLE,
     ],
     [
         "Add Rendering Variants",
         LOCATION.headlessVariants,
-        "Williams Lea",
+        DISPLAY_NAME,
         ADD_VARIANTS,
     ],
     ["Add Partial Designs", LOCATION.partialDesigns, "Global", ADD_PARTIALS],
     ["Add Shared Data", LOCATION.siteData, SHARED_FOLDER, ADD_SHARED],
     ["Add Pages", LOCATION.home, "Pages", ADD_PAGES],
 ].forEach(([name, location, itemNameValue, branch], i) =>
-    node("wl.settings", SETTINGS_PATH, `${SETUP_PATH}/${name}`, S.addItemStep, {
+    node(SETTINGS_INC, SETTINGS_PATH, `${SETUP_PATH}/${name}`, S.addItemStep, {
         shared: [
             [SF.location, "Location", location],
             [SF.stepName, "Name", itemNameValue],
@@ -1332,9 +1129,9 @@ node("wl.settings", SETTINGS_PATH, SETUP_PATH, S.setupModule, {
     }),
 );
 node(
-    "wl.settings",
+    SETTINGS_INC,
     SETTINGS_PATH,
-    `${SETUP_PATH}/Add Williams Lea Content`,
+    `${SETUP_PATH}/Add ${DISPLAY_NAME} Content`,
     S.executeScriptStep,
     {
         shared: [
@@ -1344,7 +1141,7 @@ node(
     },
 );
 node(
-    "wl.settings",
+    SETTINGS_INC,
     SETTINGS_PATH,
     `${SETUP_PATH}/Post Setup Step`,
     S.postSetupStep,
@@ -1357,29 +1154,36 @@ node(
 );
 
 // Thumbnail shown on the tile (rendered from scripts/assets/site-template-thumbnail.html).
-const thumbnail = readFileSync(THUMBNAIL);
 const THUMBNAIL_PATH = `${MEDIA_PATH}/site-template-thumbnail`;
-node("wl.media", MEDIA_PATH, MEDIA_PATH, S.mediaFolder);
-node("wl.media", MEDIA_PATH, THUMBNAIL_PATH, S.image, {
-    shared: [
-        [
-            SF.blob,
-            "Blob",
-            thumbnail.toString("base64"),
-            id(`${THUMBNAIL_PATH}#blob`),
+const hasThumbnail = existsSync(THUMBNAIL);
+if (hasThumbnail) {
+    const thumbnail = readFileSync(THUMBNAIL);
+    node(MEDIA_INC, MEDIA_PATH, MEDIA_PATH, S.mediaFolder);
+    node(MEDIA_INC, MEDIA_PATH, THUMBNAIL_PATH, S.image, {
+        shared: [
+            [
+                SF.blob,
+                "Blob",
+                thumbnail.toString("base64"),
+                id(`${THUMBNAIL_PATH}#blob`),
+            ],
+            [SF.size, "Size", thumbnail.length],
+            [SF.mimeType, "Mime Type", "image/png"],
+            [SF.extension, "Extension", "png"],
         ],
-        [SF.size, "Size", thumbnail.length],
-        [SF.mimeType, "Mime Type", "image/png"],
-        [SF.extension, "Extension", "png"],
-    ],
-});
+    });
+} else {
+    console.warn(
+        `No ${relative(REPO_ROOT, THUMBNAIL)}; the tile will have no image.`,
+    );
+}
 
 // The site template itself.
-node("wl.settings", SETTINGS_PATH, `${SETTINGS_PATH}/Templates`, S.folder);
+node(SETTINGS_INC, SETTINGS_PATH, `${SETTINGS_PATH}/Templates`, S.folder);
 node(
-    "wl.settings",
+    SETTINGS_INC,
     SETTINGS_PATH,
-    `${SETTINGS_PATH}/Templates/Williams Lea`,
+    `${SETTINGS_PATH}/Templates/${DISPLAY_NAME}`,
     S.siteTemplate,
     {
         shared: [
@@ -1389,32 +1193,28 @@ node(
                 "Site Modules",
                 idList([...SITE_MODULES, id(SETUP_PATH).toUpperCase()]),
             ],
-            [
-                SF.thumbnail,
-                "__Thumbnail",
-                `<image mediaid="${braced(id(THUMBNAIL_PATH))}" />\n`,
-            ],
-            [F.sortorder, "__Sortorder", 50],
+            ...(hasThumbnail
+                ? [
+                      [
+                          SF.thumbnail,
+                          "__Thumbnail",
+                          `<image mediaid="${braced(id(THUMBNAIL_PATH))}" />\n`,
+                      ],
+                  ]
+                : []),
+            [F.sortorder, "__Sortorder", KIT.tile.sortorder ?? 50],
         ],
         versioned: [
-            [SF.templateName, "Name", "Williams Lea"],
-            [
-                SF.description,
-                "Description",
-                "A tech-enabled outsourcing template with a video hero, mega-menu navigation, service stack, industries, insights and case studies.",
-            ],
+            [SF.templateName, "Name", DISPLAY_NAME],
+            [SF.description, "Description", KIT.tile.description],
             [
                 SF.content,
                 "Content",
                 `${JSON.stringify([
-                    {
-                        name: "Pages",
-                        content:
-                            "Home, Services, Industries, Solutions in Action, Insights, Case Studies, About, Contact",
-                    },
+                    { name: "Pages", content: KIT.tile.pages },
                     {
                         name: "Components",
-                        content: "Williams Lea components plus SXA components",
+                        content: `${DISPLAY_NAME} components plus SXA components`,
                     },
                     {
                         name: "Integrations",
@@ -1434,15 +1234,15 @@ const include = (name, path) => ({
 });
 const moduleJson = {
     $schema: "../../../.sitecore/schemas/ModuleFile.schema.json",
-    namespace: "Project.williams-lea",
+    namespace: `Project.${PROJECT}`,
     items: {
         includes: [
-            include("wl.templates", TEMPLATES_PATH),
-            include("wl.renderings", RENDERINGS_PATH),
-            include("wl.branches", BRANCHES_PATH),
-            include("wl.settings", SETTINGS_PATH),
-            include("wl.powershell", SPE_PATH),
-            include("wl.media", MEDIA_PATH),
+            include(TEMPLATES_INC, TEMPLATES_PATH),
+            include(RENDERINGS_INC, RENDERINGS_PATH),
+            include(BRANCHES_INC, BRANCHES_PATH),
+            include(SETTINGS_INC, SETTINGS_PATH),
+            include(SPE_INC, SPE_PATH),
+            ...(hasThumbnail ? [include(MEDIA_INC, MEDIA_PATH)] : []),
         ],
     },
 };
@@ -1453,7 +1253,7 @@ for (const { file, yml } of files) {
     writeFileSync(file, yml, "utf8");
 }
 writeFileSync(
-    join(ROOT, "williams-lea.module.json"),
+    join(ROOT, `${PROJECT}.module.json`),
     `${JSON.stringify(moduleJson, null, 4)}\n`,
     "utf8",
 );
@@ -1461,11 +1261,10 @@ console.log(`Wrote ${files.length} items to ${ROOT}`);
 
 // Item paths over sitecore.json's defaultMaxRelativeItemPathLength live in hashed folders that
 // only the Sitecore CLI knows how to name, so let it move those files.
-const repoRoot = resolve(ROOT, "../../..");
 const validate = spawnSync(
-    "dotnet sitecore ser validate -i Project.williams-lea --fix",
+    `dotnet sitecore ser validate -i Project.${PROJECT} --fix`,
     {
-        cwd: repoRoot,
+        cwd: REPO_ROOT,
         encoding: "utf8",
         shell: true,
     },
@@ -1473,7 +1272,7 @@ const validate = spawnSync(
 if (validate.status !== 0) {
     console.warn(`${validate.stdout ?? ""}${validate.stderr ?? ""}`);
     console.warn(
-        'Run "dotnet sitecore ser validate -i Project.williams-lea --fix" from the repo root before pushing.',
+        `Run "dotnet sitecore ser validate -i Project.${PROJECT} --fix" from the repo root before pushing.`,
     );
     process.exitCode = 1;
 } else {

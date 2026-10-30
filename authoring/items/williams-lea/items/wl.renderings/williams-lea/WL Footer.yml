@@ -22,7 +22,7 @@ SharedFields:
         linkedinLink: field(name: "linkedinLink") { jsonValue }
         xLink: field(name: "xLink") { jsonValue }
         facebookLink: field(name: "facebookLink") { jsonValue }
-        children(first: 100) {
+        children(first: 20) {
           results {
             id
             link: field(name: "link") { jsonValue }

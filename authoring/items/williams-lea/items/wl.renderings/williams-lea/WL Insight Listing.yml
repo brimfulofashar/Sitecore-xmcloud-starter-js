@@ -23,7 +23,7 @@ SharedFields:
         source: field(name: "source") {
           ... on LookupField {
             targetItem {
-              children(hasLayout: true, first: 100) {
+              children(hasLayout: true) {
                 results {
                   id
                   url { path }

@@ -20,7 +20,7 @@ SharedFields:
         subheading: field(name: "subheading") { jsonValue }
         body: field(name: "body") { jsonValue }
         link: field(name: "link") { jsonValue }
-        children(first: 100) {
+        children {
           results {
             id
             question: field(name: "question") { jsonValue }
