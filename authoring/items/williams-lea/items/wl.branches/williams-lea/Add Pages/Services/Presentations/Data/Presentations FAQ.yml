@@ -1,0 +1,23 @@
+---
+ID: "3c1ac889-6c26-4c6b-a359-934f0885e0a5"
+Parent: "e15be2ea-05bc-401f-aff7-c685ffe6abc9"
+Template: "dfc8c11d-a9de-4606-aef9-46e0bd6d1ab3"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Services/Presentations/Data/Presentations FAQ"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "b738dfbc-70a9-42d4-a2a1-d57068728759"
+      Hint: heading
+      Value: "One Solution. Many Answers."
+    - ID: "bd2ff06c-5f1c-4655-a550-18599a596ac0"
+      Hint: eyebrow
+      Value: "FAQs"

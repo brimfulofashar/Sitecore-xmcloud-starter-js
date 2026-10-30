@@ -1,0 +1,26 @@
+---
+ID: "f430b175-f2c7-40c2-a7d1-c1ce7f7110a4"
+Parent: "0aae1a0c-8943-40ef-a030-dbc394836801"
+Template: "b0602368-f67c-433c-8700-862d480546d0"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Case Studies/an-amlaw-50-firm"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "300"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1">
+          <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r uid="{C89E5B2A-CA01-42FF-A0B3-29C5675AF245}" p:before="*" s:ds="" s:id="{BD26626C-BE58-46CB-AB40-D88F460F3629}" s:par="FieldNames=@@WLV:WL Page Banner/Article@@&amp;DynamicPlaceholderId=1" s:ph="headless-main" />
+            <r uid="{418EE3F7-8DBC-47E5-A7CB-776971CE40EE}" p:after="r[@uid='{C89E5B2A-CA01-42FF-A0B3-29C5675AF245}']" s:ds="@@WL:/Data/Williams Lea/Contact CTA@@" s:id="{ACCB6FBA-9307-44B2-AB12-27BE1A86F1DD}" s:par="FieldNames&amp;DynamicPlaceholderId=2" s:ph="headless-main" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

@@ -1,0 +1,20 @@
+---
+ID: "2c488b3c-1f9e-4882-a845-ab2c94d52e30"
+Parent: "a09f6e50-0135-4f10-af11-0ad1b15502d2"
+Template: "5c589e5d-43ca-4592-a0f2-f1595c8d9b75"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Industries/Legal/Data/Legal Related Services"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "b738dfbc-70a9-42d4-a2a1-d57068728759"
+      Hint: heading
+      Value: "Related Services"

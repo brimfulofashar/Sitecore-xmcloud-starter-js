@@ -1,0 +1,13 @@
+---
+ID: "608f72aa-a7bf-4202-abee-44fdec85d7d6"
+Parent: "a12bd99e-b7b3-4a1d-a501-ee08fbe553eb"
+Template: "1c82e550-ebcd-4e5d-8abd-d50d0809541e"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Partial Designs/Global/Footer/Data"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

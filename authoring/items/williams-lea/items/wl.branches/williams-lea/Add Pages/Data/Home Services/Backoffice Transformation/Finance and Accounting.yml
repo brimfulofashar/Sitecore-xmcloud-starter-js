@@ -1,0 +1,20 @@
+---
+ID: "b596eebc-c038-4380-af06-4becf29f0205"
+Parent: "e5e4be01-8cba-4018-a3ce-758025807d0c"
+Template: "6d724984-019e-4628-aacf-2d7271258c93"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Data/Home Services/Backoffice Transformation/Finance and Accounting"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "90aefec3-a459-46f8-af32-9f5bd8a482fe"
+      Hint: link
+      Value: "<link text=\"Finance and Accounting\" linktype=\"internal\" anchor=\"finance-and-accounting\" querystring=\"\" title=\"\" target=\"\" id=\"@@WL:/Home/Services@@\" />"

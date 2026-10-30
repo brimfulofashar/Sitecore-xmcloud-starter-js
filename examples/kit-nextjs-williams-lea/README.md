@@ -17,28 +17,28 @@ A SitecoreAI recreation of [williamslea.com](https://www.williamslea.com/) for d
 
 Brand notes:
 
-* Colours: primary blue `#004E97`, slate `#333D47`, accent pink `#AD3673`, highlight orange `#FF9E25`, blush `#F4EAEC` (see `src/assets/styles/globals.css`).
-* Typeface: the live site uses Halyard Display (Adobe Fonts licence). This kit substitutes Figtree from Google Fonts.
+- Colours: primary blue `#004E97`, slate `#333D47`, accent pink `#AD3673`, highlight orange `#FF9E25`, blush `#F4EAEC` (see `src/assets/styles/globals.css`).
+- Typeface: the live site uses Halyard Display (Adobe Fonts licence). This kit substitutes Figtree from Google Fonts.
 
 ## Components
 
 All Williams Lea components live in `src/components/wl-*`, with shared atoms in `src/components/atoms/wl`. Each maps to a JSON rendering under `/sitecore/layout/Renderings/Project/williams-lea` and a datasource template under `/sitecore/templates/Project/williams-lea/Components`.
 
-| Rendering | Component | Used for |
-| --- | --- | --- |
-| WL Header | `WlHeader` | Utility bar, main nav with mega menus, Contact CTA, mobile drawer |
-| WL Footer | `WlFooter` | Footer links, CTA, social links, copyright |
-| WL Hero Video | `WlHeroVideo` | Full-height video hero (respects reduced motion); falls back to the image, then to an animated brand wave backdrop |
-| WL Service Stack | `WlServiceStack` | Sticky stacked service-pillar cards |
-| WL Solutions Grid | `WlSolutionsGrid` | "Solutions in Action" link grid |
-| WL Industries | `WlIndustries` | "Powering Diverse Sectors" industry list with image |
-| WL Tabs | `WlTabs` | "Innovation Without Limits" tabbed panels |
-| WL Insight Cards | `WlInsightCards` | Hand-picked Insight/Case Study cards (reads the selected pages' fields) |
-| WL Insight Listing | `WlInsightListing` | All child pages of a source page, newest first, with Load More |
-| WL Page Banner | `WlPageBanner` (`Default`, `Article`) | Detail page banner from page fields; parent title as eyebrow |
-| WL CTA Band | `WlCtaBand` (`Default`, `Subscribe`) | "Ready to get started?" band and newsletter banner |
-| WL Related Services | `WlRelatedServices` | Related services grouped by pillar |
-| WL FAQ | `WlFaq` | Numbered FAQ accordion with FAQPage structured data |
+| Rendering           | Component                             | Used for                                                                                                           |
+| ------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| WL Header           | `WlHeader`                            | Utility bar, main nav with mega menus, Contact CTA, mobile drawer                                                  |
+| WL Footer           | `WlFooter`                            | Footer links, CTA, social links, copyright                                                                         |
+| WL Hero Video       | `WlHeroVideo`                         | Full-height video hero (respects reduced motion); falls back to the image, then to an animated brand wave backdrop |
+| WL Service Stack    | `WlServiceStack`                      | Sticky stacked service-pillar cards                                                                                |
+| WL Solutions Grid   | `WlSolutionsGrid`                     | "Solutions in Action" link grid                                                                                    |
+| WL Industries       | `WlIndustries`                        | "Powering Diverse Sectors" industry list with image                                                                |
+| WL Tabs             | `WlTabs`                              | "Innovation Without Limits" tabbed panels                                                                          |
+| WL Insight Cards    | `WlInsightCards`                      | Hand-picked Insight/Case Study cards (reads the selected pages' fields)                                            |
+| WL Insight Listing  | `WlInsightListing`                    | All child pages of a source page, newest first, with Load More                                                     |
+| WL Page Banner      | `WlPageBanner` (`Default`, `Article`) | Detail page banner from page fields; parent title as eyebrow                                                       |
+| WL CTA Band         | `WlCtaBand` (`Default`, `Subscribe`)  | "Ready to get started?" band and newsletter banner                                                                 |
+| WL Related Services | `WlRelatedServices`                   | Related services grouped by pillar                                                                                 |
+| WL FAQ              | `WlFaq`                               | Numbered FAQ accordion with FAQPage structured data                                                                |
 
 Templates and renderings are serialized in [`authoring/items/williams-lea`](../../authoring/items/williams-lea) and generated from a single spec by `scripts/generate-sitecore-items.mjs`. Integrated GraphQL queries select fields with `field(name: "...")` aliases, so they do not depend on generated GraphQL type names. To change a template or query, edit the spec and re-run:
 
@@ -63,19 +63,35 @@ The module is also picked up automatically by an XM Cloud Deploy build, because 
 ## Create the site and content
 
 1. Deploy the branch so the `Project.williams-lea` items and the `kit-nextjs-williams-lea` rendering host exist.
-2. In the SitecoreAI Sites dashboard, create a site named `williams-lea` from the **Empty site** template (collection `demo`).
-3. Wire up the site (done through the Sitecore MCP, or by hand):
-   - Rebase the site's page templates on the CCL bases: `Page` → `{AC9DE9BE-8E86-4147-8FBC-739D5560408B}`, plus `Home Page`, `Detail Page` and `Article Page` templates as in `authoring/spe-scripts/site-2-setup.ps1`.
-   - Set the Site Grouping `RenderingHost` field to `kit-nextjs-williams-lea`.
-   - Add the WL renderings (plus CCL Breadcrumbs and RichText) to **Presentation > Available Renderings**.
-   - Create **Headless Variants** for `WlPageBanner` (`Default`, `Article`) and `WlCtaBand` (`Default`, `Subscribe`).
-   - Create Header and Footer partial designs and a Default page design mapped to all page templates.
-4. Create the pages and datasources described in [`content/site-content.json`](content/site-content.json).
+2. In SitecoreAI **Channels > Get started** (the Sites dashboard), pick the **Williams Lea** tile and create the site, for example `williams-lea`.
+
+The tile is a site template like the other kits' (Solterra & Co., SYNC, Alaris). Creating a site from it:
+
+- adds the WL renderings (plus CCL Breadcrumbs and RichText) to **Available Renderings**;
+- adds **Headless Variants** for `WL Page Banner` (`Default`, `Article`) and `WL CTA Band` (`Default`, `Subscribe`);
+- adds Header and Footer partial designs and a Default page design for every page template;
+- creates the `Home Page`, `Detail Page` and `Article Page` templates on the click-click-launch bases;
+- creates all pages and datasources from [`content/site-content.json`](content/site-content.json);
+- sets the rendering host to `kit-nextjs-williams-lea` and approves the content in workflow.
+
+How it is put together (all generated by `scripts/generate-sitecore-items.mjs`):
+
+| Item                                                                                   | Path                                                                                                   |
+| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Site template (the tile)                                                               | `/sitecore/system/Settings/Project/williams-lea/Templates/Williams Lea`                                |
+| Setup module (Add Item steps, setup script, rendering host step)                       | `/sitecore/system/Settings/Project/williams-lea/Williams Lea Setup`                                    |
+| Branch templates (pages, shared data, partial designs, variants, available renderings) | `/sitecore/templates/Branches/Project/williams-lea`                                                    |
+| SPE scripts                                                                            | `/sitecore/system/Modules/PowerShell/Script Library/Williams Lea`                                      |
+| Tile thumbnail                                                                         | `/sitecore/media library/Feature/williams-lea` (source: `scripts/assets/site-template-thumbnail.html`) |
+
+Branch items cannot hold IDs of items that only exist once a site is created, so links, multilist values and shared datasources are written as tokens (`@@WL:/Home/Services@@`, `@@WLV:WL Page Banner/Article@@`). The **Williams Lea Site Setup** script replaces them with real IDs after the pages are created.
+
+To change pages or content, edit `content/site-content.json` and re-run the generator. It also runs `dotnet sitecore ser validate -i Project.williams-lea --fix`, which moves items with long paths into the CLI's short-path folders.
 
 ## Build and run site locally
 
 1. Starting from the root of the repository, navigate to the site app folder:
-    ```cd examples\kit-nextjs-williams-lea\```
+   `cd examples\kit-nextjs-williams-lea\`
 2. Copy `.env.remote.example` to `.env.local`.
 3. Edit `.env.local` and provide `SITECORE_EDGE_CONTEXT_ID`, `NEXT_PUBLIC_DEFAULT_SITE_NAME` (`williams-lea`), `NEXT_PUBLIC_SITECORE_EDGE_CONTEXT_ID` and `SITECORE_EDITING_SECRET`. (More info: [Environment variables in XM Cloud](https://doc.sitecore.com/xmc/en/developers/xm-cloud/get-the-environment-variables-for-a-site.html))
 4. Install dependencies: `npm install`

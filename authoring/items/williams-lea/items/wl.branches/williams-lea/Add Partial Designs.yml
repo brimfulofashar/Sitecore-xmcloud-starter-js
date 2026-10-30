@@ -1,0 +1,13 @@
+---
+ID: "ce1a7c2e-1f0b-4c7d-ac3a-855d9bc8bf52"
+Parent: "0390592f-a225-4107-a9fe-eeda2728aa48"
+Template: "35e75c72-4985-4e09-88c3-0eac6cd1e64f"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Partial Designs"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

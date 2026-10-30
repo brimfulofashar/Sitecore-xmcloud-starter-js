@@ -1,0 +1,17 @@
+---
+ID: "67cf4268-3bb5-4e24-a476-bda47b612814"
+Parent: "0a042e72-99b4-4c52-ad25-f0fc56ecb8af"
+Template: "49c111d0-6867-4798-a724-1f103166e6e9"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Rendering Variants/WL Page Banner"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

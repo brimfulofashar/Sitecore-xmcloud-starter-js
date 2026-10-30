@@ -1,0 +1,20 @@
+---
+ID: "c5892cb1-fbc2-477b-a3d0-f2f415ff2a5a"
+Parent: "7720c6ae-ecc8-4288-a13e-29a03c783ec1"
+Template: "6d724984-019e-4628-aacf-2d7271258c93"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Industries/Legal/Data/Legal Related Services/Business Support/Document and Word Processing"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "90aefec3-a459-46f8-af32-9f5bd8a482fe"
+      Hint: link
+      Value: "<link text=\"Document and Word Processing\" linktype=\"internal\" anchor=\"document-services\" querystring=\"\" title=\"\" target=\"\" id=\"@@WL:/Home/Services@@\" />"

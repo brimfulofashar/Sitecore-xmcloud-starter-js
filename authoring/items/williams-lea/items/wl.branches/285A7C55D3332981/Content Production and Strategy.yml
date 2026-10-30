@@ -1,0 +1,20 @@
+---
+ID: "0ad76c70-8af0-4866-a6d5-c53ecfd2284a"
+Parent: "f5eb6a66-76be-43a2-a7a7-1b3da815862b"
+Template: "6d724984-019e-4628-aacf-2d7271258c93"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Industries/Legal/Data/Legal Related Services/Creative and Marketing/Content Production and Strategy"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "200"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "90aefec3-a459-46f8-af32-9f5bd8a482fe"
+      Hint: link
+      Value: "<link text=\"Content Production and Strategy\" linktype=\"internal\" anchor=\"content-creation\" querystring=\"\" title=\"\" target=\"\" id=\"@@WL:/Home/Services@@\" />"

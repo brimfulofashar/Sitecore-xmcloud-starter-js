@@ -1,0 +1,23 @@
+---
+ID: "949b8288-1a43-4547-aaba-b1662ef3368b"
+Parent: "3c1ac889-6c26-4c6b-a359-934f0885e0a5"
+Template: "3b76f97c-66ce-440c-abe0-7a2435f47725"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Services/Presentations/Data/Presentations FAQ/Question 1"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "3806afe0-134b-43d7-a06c-b99108f5fc2e"
+      Hint: question
+      Value: "What are presentation design services?"
+    - ID: "544627cd-15f9-4d50-aafc-b3508da3e52b"
+      Hint: answer
+      Value: "<p>Presentation design services provide specialist support for designing, formatting, and producing business presentations. Our experts can support individual high-priority projects as well as recurring, high-volume presentation requirements.</p>"

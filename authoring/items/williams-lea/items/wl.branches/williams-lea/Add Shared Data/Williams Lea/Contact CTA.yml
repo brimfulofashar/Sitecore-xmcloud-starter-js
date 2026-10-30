@@ -1,0 +1,26 @@
+---
+ID: "93fe0afc-f6d9-488e-a78b-21f61a6d0192"
+Parent: "a54c01d0-066c-419c-ac90-751e756f337d"
+Template: "dd3a903f-43b3-4534-a065-3c96ecd0e7dd"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Shared Data/Williams Lea/Contact CTA"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "300"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "b738dfbc-70a9-42d4-a2a1-d57068728759"
+      Hint: heading
+      Value: "Reimagine what is possible."
+    - ID: "bd2ff06c-5f1c-4655-a550-18599a596ac0"
+      Hint: eyebrow
+      Value: "Ready to get started?"
+    - ID: "f39abeaa-58f4-4b7c-a9d2-3c3edf220dab"
+      Hint: link
+      Value: "<link text=\"Contact Us\" linktype=\"internal\" anchor=\"\" querystring=\"\" title=\"\" target=\"\" id=\"@@WL:/Home/Contact@@\" />"

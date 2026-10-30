@@ -1,0 +1,20 @@
+---
+ID: "350eface-092c-4f35-a0fb-27e5312297a1"
+Parent: "91bf9795-da23-4086-a314-cc32b47e5a86"
+Template: "6d724984-019e-4628-aacf-2d7271258c93"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Industries/Legal/Data/Legal Related Services/Backoffice Transformation/Operations Management"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "300"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "90aefec3-a459-46f8-af32-9f5bd8a482fe"
+      Hint: link
+      Value: "<link text=\"Operations Management\" linktype=\"external\" url=\"/services/operations-management\" anchor=\"\" title=\"\" target=\"\" />"

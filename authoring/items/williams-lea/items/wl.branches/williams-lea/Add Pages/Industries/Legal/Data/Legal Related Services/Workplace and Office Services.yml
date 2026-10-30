@@ -1,0 +1,20 @@
+---
+ID: "64846ba5-614b-4de2-a834-97aabec2265b"
+Parent: "2c488b3c-1f9e-4882-a845-ab2c94d52e30"
+Template: "d4a9e5ff-2fb8-4e1c-a7fa-3b99ecd8d5f1"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Industries/Legal/Data/Legal Related Services/Workplace and Office Services"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "300"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "22735a11-e32b-4c87-adb9-587fa9c7c137"
+      Hint: title
+      Value: "Workplace and Office Services"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

@@ -1,0 +1,26 @@
+---
+ID: "44ac354b-f7a8-4833-ab27-9d8eabf126b3"
+Parent: "02ba7deb-4e6e-4e3d-a572-2a5adde56c00"
+Template: "d4a9e5ff-2fb8-4e1c-a7fa-3b99ecd8d5f1"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Data/Home Services/Creative and Marketing"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "300"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "22735a11-e32b-4c87-adb9-587fa9c7c137"
+      Hint: title
+      Value: "Creative and Marketing"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "4e045fd0-2d5d-4ff7-a34e-6aff4bb82217"
+      Hint: description
+      Value: "<p>Amplify communications with brand-consistent, omnichannel creative and digital solutions – from campaign collateral and immersive content to high-volume production for marketing, sales, and experience teams.</p>"
+    - ID: "8a7574a9-f53e-4ef5-ad7f-a6b2eb2172b0"
+      Hint: tagline
+      Value: "Delivering brand-consistent, creative and digital solutions across all media and markets"

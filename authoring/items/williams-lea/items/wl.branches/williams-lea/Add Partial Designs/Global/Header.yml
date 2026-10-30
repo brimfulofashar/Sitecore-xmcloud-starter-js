@@ -1,0 +1,28 @@
+---
+ID: "093ecd79-b8df-4277-ae6b-58769816d42e"
+Parent: "20b8ec3a-abe8-43b8-a0a6-4a2d1b409017"
+Template: "fd2059fd-6043-4dfe-8c04-e2437ce87634"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Partial Designs/Global/Header"
+SharedFields:
+- ID: "55faae90-3bba-4f7f-96fe-13c3f40055ff"
+  Hint: Signature
+  Value: "header"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1">
+          <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r uid="{5CB51396-C732-442A-A0C0-5C770CC37F82}" p:before="*" s:ds="local:/Data/Header" s:id="{2D22C547-A4D0-4B2F-AD73-8823C4584913}" s:par="FieldNames&amp;DynamicPlaceholderId=1" s:ph="headless-header" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

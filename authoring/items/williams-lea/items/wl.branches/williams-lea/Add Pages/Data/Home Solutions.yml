@@ -1,0 +1,29 @@
+---
+ID: "76671515-adde-418d-a2df-2eeac08faab3"
+Parent: "36327119-7ece-4835-a3b0-bbf6f4f5a5cb"
+Template: "bc57a2cd-c964-4a68-a48d-4bcc528a0e09"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Data/Home Solutions"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "b738dfbc-70a9-42d4-a2a1-d57068728759"
+      Hint: heading
+      Value: "Solutions in Action"
+    - ID: "bd2ff06c-5f1c-4655-a550-18599a596ac0"
+      Hint: eyebrow
+      Value: "Outcomes"
+    - ID: "c766f17a-1f79-49c4-ae24-aace3715e77c"
+      Hint: body
+      Value: "<p>By combining AI-powered tools with deep domain expertise, we deliver faster turnaround times, improved quality, and the workforce productivity gains that translate directly to competitive advantage. These solutions help client-facing teams respond faster, win more mandates, and protect margins in increasingly demanding markets.</p>"
+    - ID: "f39abeaa-58f4-4b7c-a9d2-3c3edf220dab"
+      Hint: link
+      Value: "<link text=\"Learn more\" linktype=\"internal\" anchor=\"\" querystring=\"\" title=\"\" target=\"\" id=\"@@WL:/Home/Solutions in Action@@\" />"

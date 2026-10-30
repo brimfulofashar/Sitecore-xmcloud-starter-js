@@ -1,0 +1,30 @@
+---
+ID: "4765cfcb-e7e7-4df0-ac1f-8504c3596dd7"
+Parent: "cdb8757c-4b38-4259-a4da-65066f917be0"
+Template: "a9919790-3389-4fc2-abc8-24f73c847c8e"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Industries/Pharma and Life Sciences"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "500"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1">
+          <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r uid="{50A7FE5F-0C57-46AD-AE94-057F5D569FE9}" p:before="*" s:ds="" s:id="{BD26626C-BE58-46CB-AB40-D88F460F3629}" s:par="FieldNames&amp;DynamicPlaceholderId=1" s:ph="headless-main" />
+            <r uid="{2E1FFA0A-CE95-4DB4-AFF5-8CFF3C6AA559}" p:after="r[@uid='{50A7FE5F-0C57-46AD-AE94-057F5D569FE9}']" s:ds="" s:id="{B4CBCB8F-9096-4888-AC6E-34DF687276FB}" s:par="FieldNames&amp;DynamicPlaceholderId=2" s:ph="headless-main" />
+            <r uid="{8F0A880F-4E72-4A59-A10E-AA1841803F67}" p:after="r[@uid='{2E1FFA0A-CE95-4DB4-AFF5-8CFF3C6AA559}']" s:ds="@@WL:/Data/Williams Lea/Legal Case Studies@@" s:id="{CB0238C5-0DB3-4115-A203-14ADCA278AAF}" s:par="FieldNames&amp;DynamicPlaceholderId=3" s:ph="headless-main" />
+            <r uid="{E5C1A081-4428-402D-AFCA-460E1510779E}" p:after="r[@uid='{8F0A880F-4E72-4A59-A10E-AA1841803F67}']" s:ds="@@WL:/Data/Williams Lea/Contact CTA@@" s:id="{ACCB6FBA-9307-44B2-AB12-27BE1A86F1DD}" s:par="FieldNames&amp;DynamicPlaceholderId=4" s:ph="headless-main" />
+            <r uid="{5574B1B3-328D-463D-AC47-07726B2D2477}" p:after="r[@uid='{E5C1A081-4428-402D-AFCA-460E1510779E}']" s:ds="@@WL:/Data/Williams Lea/Think Space@@" s:id="{CB0238C5-0DB3-4115-A203-14ADCA278AAF}" s:par="FieldNames&amp;DynamicPlaceholderId=5" s:ph="headless-main" />
+            <r uid="{D3D47DA8-03FE-4A71-A9CB-731E1DCB7BD7}" p:after="r[@uid='{5574B1B3-328D-463D-AC47-07726B2D2477}']" s:ds="@@WL:/Data/Williams Lea/Industries Strip@@" s:id="{C1F63773-328D-499D-A187-BC6E8ED0014F}" s:par="FieldNames&amp;DynamicPlaceholderId=6" s:ph="headless-main" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

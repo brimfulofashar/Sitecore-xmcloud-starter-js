@@ -1,0 +1,26 @@
+---
+ID: "c0f3c4f8-c74e-4e1b-a5f1-4deb33147d21"
+Parent: "0c74d0c8-12aa-4abf-a46b-6607ba90891c"
+Template: "ce1fe44b-71fa-43fc-ae23-2b8338a80e3e"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Partial Designs/Global/Header/Data/Header/Careers"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "700"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "22735a11-e32b-4c87-adb9-587fa9c7c137"
+      Hint: title
+      Value: "Careers"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "5bbec20d-3753-4019-a7ce-b0b8b935e024"
+      Hint: isUtility
+      Value: "1"
+    - ID: "641f4689-4be0-4415-a7d0-0320ac9d2969"
+      Hint: link
+      Value: "<link text=\"Careers\" linktype=\"external\" url=\"/careers\" anchor=\"\" title=\"\" target=\"\" />"

@@ -1,0 +1,20 @@
+---
+ID: "139607e5-b6ec-44e1-afb6-d3511908d78b"
+Parent: "58a3baf7-6df7-4d53-aad3-d6debf86c625"
+Template: "6d724984-019e-4628-aacf-2d7271258c93"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Partial Designs/Global/Header/Data/Header/Services/Research and Analytics"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "400"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "90aefec3-a459-46f8-af32-9f5bd8a482fe"
+      Hint: link
+      Value: "<link text=\"Research and Analytics\" linktype=\"external\" url=\"/services/research-analytics\" anchor=\"\" title=\"\" target=\"\" />"

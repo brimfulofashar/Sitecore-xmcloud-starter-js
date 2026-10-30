@@ -1,0 +1,29 @@
+---
+ID: "f3e426b1-9aae-4451-aec8-0dd31ba4d941"
+Parent: "a54c01d0-066c-419c-ac90-751e756f337d"
+Template: "96128325-2946-4775-a9ab-f59ef3d576b1"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Shared Data/Williams Lea/Think Space"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "200"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "6bad32d5-3199-4d6e-a390-925d87486c9e"
+      Hint: items
+      Value: "@@WL:/Home/Insights/Blog/who-owns-the-work-when-ai-crosses-every-department@@|@@WL:/Home/Insights/Blog/paving-the-path-to-operational-ai@@|@@WL:/Home/Insights/Blog/clients-are-writing-the-new-rules-for-legal-ai@@"
+    - ID: "b738dfbc-70a9-42d4-a2a1-d57068728759"
+      Hint: heading
+      Value: "The Think Space"
+    - ID: "bd2ff06c-5f1c-4655-a550-18599a596ac0"
+      Hint: eyebrow
+      Value: "Insights"
+    - ID: "f39abeaa-58f4-4b7c-a9d2-3c3edf220dab"
+      Hint: link
+      Value: "<link text=\"See all insights\" linktype=\"internal\" anchor=\"\" querystring=\"\" title=\"\" target=\"\" id=\"@@WL:/Home/Insights/Blog@@\" />"

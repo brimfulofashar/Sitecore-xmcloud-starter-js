@@ -1,0 +1,26 @@
+---
+ID: "345a2d55-9e2a-4383-a381-5c7017ad0ace"
+Parent: "0c74d0c8-12aa-4abf-a46b-6607ba90891c"
+Template: "ce1fe44b-71fa-43fc-ae23-2b8338a80e3e"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Partial Designs/Global/Header/Data/Header/Outcomes"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "300"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "22735a11-e32b-4c87-adb9-587fa9c7c137"
+      Hint: title
+      Value: "Outcomes"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "4e045fd0-2d5d-4ff7-a34e-6aff4bb82217"
+      Hint: description
+      Value: "<p>AI-powered tools combined with deep domain expertise for faster turnaround, improved quality and workforce productivity.</p>"
+    - ID: "641f4689-4be0-4415-a7d0-0320ac9d2969"
+      Hint: link
+      Value: "<link text=\"Solutions in Action\" linktype=\"internal\" anchor=\"\" querystring=\"\" title=\"\" target=\"\" id=\"@@WL:/Home/Solutions in Action@@\" />"

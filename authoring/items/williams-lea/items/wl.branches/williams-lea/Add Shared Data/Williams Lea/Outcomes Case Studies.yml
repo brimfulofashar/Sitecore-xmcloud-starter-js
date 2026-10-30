@@ -1,0 +1,32 @@
+---
+ID: "6e382adb-c210-41fe-ae11-c00673b4d64e"
+Parent: "a54c01d0-066c-419c-ac90-751e756f337d"
+Template: "96128325-2946-4775-a9ab-f59ef3d576b1"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Shared Data/Williams Lea/Outcomes Case Studies"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "600"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "691b14c3-579a-493c-a37a-c83e34cc524d"
+      Hint: subheading
+      Value: "Driving client growth and success through highly skilled business-critical support services"
+    - ID: "6bad32d5-3199-4d6e-a390-925d87486c9e"
+      Hint: items
+      Value: "@@WL:/Home/Case Studies/a-fortune-500-insurance-provider@@|@@WL:/Home/Case Studies/an-amlaw-50-firm@@|@@WL:/Home/Case Studies/a-fortune-50-healthcare-insurance-provider@@"
+    - ID: "b738dfbc-70a9-42d4-a2a1-d57068728759"
+      Hint: heading
+      Value: "Methodical approach, measurable impact"
+    - ID: "bd2ff06c-5f1c-4655-a550-18599a596ac0"
+      Hint: eyebrow
+      Value: "Case Studies"
+    - ID: "f39abeaa-58f4-4b7c-a9d2-3c3edf220dab"
+      Hint: link
+      Value: "<link text=\"See all case studies\" linktype=\"internal\" anchor=\"\" querystring=\"\" title=\"\" target=\"\" id=\"@@WL:/Home/Case Studies@@\" />"

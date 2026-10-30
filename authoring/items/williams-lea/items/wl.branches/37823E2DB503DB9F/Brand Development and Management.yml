@@ -1,0 +1,20 @@
+---
+ID: "cc7091c5-6a0d-4f6d-ab3e-f0907c3445b9"
+Parent: "a13a3625-9159-403a-a22c-ef068cf1f49a"
+Template: "6d724984-019e-4628-aacf-2d7271258c93"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Services/Presentations/Data/Presentations Related Services/Creative and Marketing/Brand Development and Management"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "90aefec3-a459-46f8-af32-9f5bd8a482fe"
+      Hint: link
+      Value: "<link text=\"Brand Development and Management\" linktype=\"external\" url=\"/services/brand-development-management\" anchor=\"\" title=\"\" target=\"\" />"

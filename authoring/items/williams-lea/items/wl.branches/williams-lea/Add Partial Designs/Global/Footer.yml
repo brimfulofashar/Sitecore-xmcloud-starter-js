@@ -1,0 +1,29 @@
+---
+ID: "a12bd99e-b7b3-4a1d-a501-ee08fbe553eb"
+Parent: "20b8ec3a-abe8-43b8-a0a6-4a2d1b409017"
+Template: "fd2059fd-6043-4dfe-8c04-e2437ce87634"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Partial Designs/Global/Footer"
+SharedFields:
+- ID: "55faae90-3bba-4f7f-96fe-13c3f40055ff"
+  Hint: Signature
+  Value: "footer"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "200"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1">
+          <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r uid="{5308F0E3-8542-4A1C-A090-15C2338280C8}" p:before="*" s:ds="local:/Data/Subscribe Banner" s:id="{ACCB6FBA-9307-44B2-AB12-27BE1A86F1DD}" s:par="FieldNames=@@WLV:WL CTA Band/Subscribe@@&amp;DynamicPlaceholderId=1" s:ph="headless-footer" />
+            <r uid="{E1377A5A-61DC-4698-A3DE-A238D2F7A948}" p:after="r[@uid='{5308F0E3-8542-4A1C-A090-15C2338280C8}']" s:ds="local:/Data/Footer" s:id="{14A9AFAE-5529-4056-A97A-C93F490A63C1}" s:par="FieldNames&amp;DynamicPlaceholderId=2" s:ph="headless-footer" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

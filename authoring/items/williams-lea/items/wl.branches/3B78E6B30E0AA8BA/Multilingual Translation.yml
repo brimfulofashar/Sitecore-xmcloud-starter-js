@@ -1,0 +1,20 @@
+---
+ID: "8d25fc5f-999b-4b31-ac7d-59b21e408a5d"
+Parent: "677b9df9-91a8-4b3b-a218-cf1f136d8bee"
+Template: "6d724984-019e-4628-aacf-2d7271258c93"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Services/Presentations/Data/Presentations Related Services/Business Support/Multilingual Translation"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "90aefec3-a459-46f8-af32-9f5bd8a482fe"
+      Hint: link
+      Value: "<link text=\"Multilingual Translation\" linktype=\"internal\" anchor=\"document-services\" querystring=\"\" title=\"\" target=\"\" id=\"@@WL:/Home/Services@@\" />"

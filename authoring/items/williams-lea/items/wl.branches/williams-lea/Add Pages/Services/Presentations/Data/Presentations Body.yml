@@ -1,0 +1,20 @@
+---
+ID: "f3cf9f9c-080f-44bc-a316-cbc2dabefd43"
+Parent: "e15be2ea-05bc-401f-aff7-c685ffe6abc9"
+Template: "58041043-7bea-44f0-b1b8-08e4ea7054f4"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Services/Presentations/Data/Presentations Body"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "8b57dadd-0825-4f5d-9c32-187c0af7e1fd"
+      Hint: text
+      Value: "<h2>Presentation design and production services that enable enterprise teams</h2><p>Williams Lea provides presentation design and production services for organizations managing recurring, urgent, or high-volume presentation demand.</p><p>Our presentation specialists combine creative expertise, structured workflows, and purpose-built technology to turn complex information into clear, compelling presentations. From PowerPoint presentations and pitchbooks to client decks, slide formatting, and high-volume production, we help teams deliver polished, brand-consistent work under demanding deadlines.</p><h3>Benefits to clients</h3><ul><li><strong>End-to-end presentation support</strong> – Manages presentation production from initial brief through design, formatting, quality control, and final delivery.</li><li><strong>Creative expertise at scale</strong> – Combines presentation proficiency, structured workflows, and purpose-built technology to manage high-volume demand without compromising quality.</li><li><strong>Enterprise-grade security and compliance</strong> – Supports workflows in highly regulated environments where confidentiality, brand consistency, and quality are critical.</li><li><strong>Global delivery</strong> – Access scalable presentation support across teams and time zones through our 24/7/365 delivery model.</li></ul><h2>Outsourced presentation support that works with your team</h2><p>Williams Lea provides outsourced presentation design support for organizations that need ongoing production capacity, additional support during high-demand periods, or specialist expertise for business-critical presentations.</p>"

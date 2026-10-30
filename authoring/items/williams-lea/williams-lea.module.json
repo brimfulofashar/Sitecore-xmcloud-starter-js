@@ -12,6 +12,26 @@
                 "name": "wl.renderings",
                 "path": "/sitecore/layout/Renderings/Project/williams-lea",
                 "allowedPushOperations": "CreateUpdateAndDelete"
+            },
+            {
+                "name": "wl.branches",
+                "path": "/sitecore/templates/Branches/Project/williams-lea",
+                "allowedPushOperations": "CreateUpdateAndDelete"
+            },
+            {
+                "name": "wl.settings",
+                "path": "/sitecore/system/Settings/Project/williams-lea",
+                "allowedPushOperations": "CreateUpdateAndDelete"
+            },
+            {
+                "name": "wl.powershell",
+                "path": "/sitecore/system/Modules/PowerShell/Script Library/Williams Lea",
+                "allowedPushOperations": "CreateUpdateAndDelete"
+            },
+            {
+                "name": "wl.media",
+                "path": "/sitecore/media library/Feature/williams-lea",
+                "allowedPushOperations": "CreateUpdateAndDelete"
             }
         ]
     }

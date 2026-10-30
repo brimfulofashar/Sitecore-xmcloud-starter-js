@@ -1,0 +1,13 @@
+---
+ID: "0a042e72-99b4-4c52-ad25-f0fc56ecb8af"
+Parent: "0390592f-a225-4107-a9fe-eeda2728aa48"
+Template: "35e75c72-4985-4e09-88c3-0eac6cd1e64f"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Rendering Variants"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

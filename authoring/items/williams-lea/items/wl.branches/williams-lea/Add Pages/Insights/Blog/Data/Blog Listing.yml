@@ -1,0 +1,23 @@
+---
+ID: "231463f0-9e43-495a-a581-bafaf002aa28"
+Parent: "927e9501-010f-4e21-a27d-ff810d021109"
+Template: "62309618-c7a1-48b1-a2c2-46e5d1412288"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Insights/Blog/Data/Blog Listing"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "b738dfbc-70a9-42d4-a2a1-d57068728759"
+      Hint: heading
+      Value: "Latest blogs"
+    - ID: "cadf3c12-422f-4849-aeb1-d920fbf9fde6"
+      Hint: source
+      Value: "@@WL:/Home/Insights/Blog@@"

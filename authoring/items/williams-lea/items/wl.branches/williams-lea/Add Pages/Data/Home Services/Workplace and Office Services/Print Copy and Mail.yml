@@ -1,0 +1,20 @@
+---
+ID: "3fa4bd1c-905f-49a7-a8fe-72c1cdf7a84c"
+Parent: "408e209e-3d2f-4888-a579-c82b8071cb2c"
+Template: "6d724984-019e-4628-aacf-2d7271258c93"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Data/Home Services/Workplace and Office Services/Print Copy and Mail"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "90aefec3-a459-46f8-af32-9f5bd8a482fe"
+      Hint: link
+      Value: "<link text=\"Print, Copy and Mail\" linktype=\"internal\" anchor=\"print-copy-and-mail\" querystring=\"\" title=\"\" target=\"\" id=\"@@WL:/Home/Services@@\" />"

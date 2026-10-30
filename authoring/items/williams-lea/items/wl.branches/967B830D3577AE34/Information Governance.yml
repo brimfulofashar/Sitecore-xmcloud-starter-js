@@ -1,0 +1,20 @@
+---
+ID: "354daae0-ff9e-4d67-a3a7-8919471f3d05"
+Parent: "64846ba5-614b-4de2-a834-97aabec2265b"
+Template: "6d724984-019e-4628-aacf-2d7271258c93"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Industries/Legal/Data/Legal Related Services/Workplace and Office Services/Information Governance"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "90aefec3-a459-46f8-af32-9f5bd8a482fe"
+      Hint: link
+      Value: "<link text=\"Information Governance\" linktype=\"external\" url=\"/services/information-governance\" anchor=\"\" title=\"\" target=\"\" />"

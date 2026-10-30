@@ -1,0 +1,27 @@
+---
+ID: "cdb8757c-4b38-4259-a4da-65066f917be0"
+Parent: "194fdbf8-528e-4d59-ab4c-ea9da419b74f"
+Template: "a9919790-3389-4fc2-abc8-24f73c847c8e"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Industries"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "200"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1">
+          <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r uid="{2AF0755D-933C-410B-AAA0-3B6A31A2B841}" p:before="*" s:ds="" s:id="{BD26626C-BE58-46CB-AB40-D88F460F3629}" s:par="FieldNames&amp;DynamicPlaceholderId=1" s:ph="headless-main" />
+            <r uid="{B572A82A-1E33-4C5B-A36E-D4524F3BCF3B}" p:after="r[@uid='{2AF0755D-933C-410B-AAA0-3B6A31A2B841}']" s:ds="@@WL:/Data/Williams Lea/Industries Strip@@" s:id="{C1F63773-328D-499D-A187-BC6E8ED0014F}" s:par="FieldNames&amp;DynamicPlaceholderId=2" s:ph="headless-main" />
+            <r uid="{6A1A11FE-F28C-4F15-AB1C-7C994FF0AF35}" p:after="r[@uid='{B572A82A-1E33-4C5B-A36E-D4524F3BCF3B}']" s:ds="@@WL:/Data/Williams Lea/Contact CTA@@" s:id="{ACCB6FBA-9307-44B2-AB12-27BE1A86F1DD}" s:par="FieldNames&amp;DynamicPlaceholderId=3" s:ph="headless-main" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

@@ -1,0 +1,20 @@
+---
+ID: "728421b7-ddec-4ab3-a880-c8ecb1e89672"
+Parent: "a09f6e50-0135-4f10-af11-0ad1b15502d2"
+Template: "58041043-7bea-44f0-b1b8-08e4ea7054f4"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Industries/Legal/Data/Legal Body"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "8b57dadd-0825-4f5d-9c32-187c0af7e1fd"
+      Hint: text
+      Value: "<h2>Outpacing the competition and improving profitability</h2><p>A volatile market, increasing client demands, and new market entrants have combined to significantly impact firms' ability to manage growth and maintain or increase profits. The legal market is at an inflection point and firms that don't adapt will cede market dominance.</p><p>For more than 30 years, we have helped law firms evolve and revitalize their operations, improve support ratios, automate and digitize processes, enhance the growth potential of their workforce and adapt to changes that have challenged the cultural and institutional norm.</p><ul><li><strong>Solutions as unique as your firm</strong> – We craft solutions that align with each firm's culture, challenges and goals.</li><li><strong>Global reach, local support</strong> – More than 3,000 Williams Lea experts support law firm activities from firm offices or our onshore and offshore delivery centers.</li><li><strong>Operational rigor and the highest data protection standards</strong> – Our operations are ISO 27001 accredited.</li><li><strong>Service underpinned by technology</strong> – Built-for-purpose, AI-first tools such as ENGAGE Service Management, Intake.AI and Deckorate.</li></ul>"

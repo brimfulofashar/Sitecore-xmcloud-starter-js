@@ -1,0 +1,30 @@
+---
+ID: "8b725fa6-42e8-406d-a5c0-a65f95e165e8"
+Parent: "edc829c9-2195-4595-a65e-22407e6f7597"
+Template: "a9919790-3389-4fc2-abc8-24f73c847c8e"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Solutions in Action/Supercharge Workforce Productivity"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "300"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1">
+          <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r uid="{A381CC5F-7511-4D9A-A00A-46017F521C39}" p:before="*" s:ds="" s:id="{BD26626C-BE58-46CB-AB40-D88F460F3629}" s:par="FieldNames&amp;DynamicPlaceholderId=1" s:ph="headless-main" />
+            <r uid="{F2DE08A2-29A0-436C-AFB0-E86BE3D18AC5}" p:after="r[@uid='{A381CC5F-7511-4D9A-A00A-46017F521C39}']" s:ds="" s:id="{B4CBCB8F-9096-4888-AC6E-34DF687276FB}" s:par="FieldNames&amp;DynamicPlaceholderId=2" s:ph="headless-main" />
+            <r uid="{3BAED721-D922-4AFB-A45F-FA90C819E750}" p:after="r[@uid='{F2DE08A2-29A0-436C-AFB0-E86BE3D18AC5}']" s:ds="@@WL:/Data/Williams Lea/Outcomes Case Studies@@" s:id="{CB0238C5-0DB3-4115-A203-14ADCA278AAF}" s:par="FieldNames&amp;DynamicPlaceholderId=3" s:ph="headless-main" />
+            <r uid="{92319FF6-6760-4B63-ABB2-87CCCDAFE3DE}" p:after="r[@uid='{3BAED721-D922-4AFB-A45F-FA90C819E750}']" s:ds="@@WL:/Data/Williams Lea/Contact CTA@@" s:id="{ACCB6FBA-9307-44B2-AB12-27BE1A86F1DD}" s:par="FieldNames&amp;DynamicPlaceholderId=4" s:ph="headless-main" />
+            <r uid="{09BEAE68-F73B-46F1-A10F-E09A81C16CF3}" p:after="r[@uid='{92319FF6-6760-4B63-ABB2-87CCCDAFE3DE}']" s:ds="@@WL:/Data/Williams Lea/Industries Strip@@" s:id="{C1F63773-328D-499D-A187-BC6E8ED0014F}" s:par="FieldNames&amp;DynamicPlaceholderId=5" s:ph="headless-main" />
+            <r uid="{21793679-3A86-4693-A69A-34ED0DE9035B}" p:after="r[@uid='{09BEAE68-F73B-46F1-A10F-E09A81C16CF3}']" s:ds="@@WL:/Data/Williams Lea/Think Space@@" s:id="{CB0238C5-0DB3-4115-A203-14ADCA278AAF}" s:par="FieldNames&amp;DynamicPlaceholderId=6" s:ph="headless-main" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

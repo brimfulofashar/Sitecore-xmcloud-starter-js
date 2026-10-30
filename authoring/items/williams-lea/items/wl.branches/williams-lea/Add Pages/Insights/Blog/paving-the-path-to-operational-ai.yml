@@ -1,0 +1,26 @@
+---
+ID: "97c8934a-52e6-4dfa-aeb5-bae83477c38c"
+Parent: "98257c1f-7463-4596-acc5-84b8e628d42f"
+Template: "b0602368-f67c-433c-8700-862d480546d0"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Insights/Blog/paving-the-path-to-operational-ai"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "200"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1">
+          <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r uid="{53CF2C5A-6C13-4ACB-A257-D59127EFC59B}" p:before="*" s:ds="" s:id="{BD26626C-BE58-46CB-AB40-D88F460F3629}" s:par="FieldNames=@@WLV:WL Page Banner/Article@@&amp;DynamicPlaceholderId=1" s:ph="headless-main" />
+            <r uid="{8D080FA6-EB40-4390-AA0B-589A55675E38}" p:after="r[@uid='{53CF2C5A-6C13-4ACB-A257-D59127EFC59B}']" s:ds="@@WL:/Data/Williams Lea/Think Space@@" s:id="{CB0238C5-0DB3-4115-A203-14ADCA278AAF}" s:par="FieldNames&amp;DynamicPlaceholderId=2" s:ph="headless-main" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

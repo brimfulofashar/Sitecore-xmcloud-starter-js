@@ -1,0 +1,35 @@
+---
+ID: "f0bc8b55-2d4a-49f3-a368-39f3713b51bd"
+Parent: "608f72aa-a7bf-4202-abee-44fdec85d7d6"
+Template: "176f2b35-9ddc-4be8-a5c7-21723b981cb2"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Partial Designs/Global/Footer/Data/Footer"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "200"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00bc6f0d-105b-4c23-a4cd-adf8956f64ae"
+      Hint: linkedinLink
+      Value: "<link text=\"\" linktype=\"external\" url=\"https://www.linkedin.com/company/williamslea\" anchor=\"\" title=\"\" target=\"_blank\" />"
+    - ID: "1c4272c0-9eb2-4ab1-a3e7-1f223e21e6ae"
+      Hint: facebookLink
+      Value: "<link text=\"\" linktype=\"external\" url=\"https://www.facebook.com/williamsleacom/\" anchor=\"\" title=\"\" target=\"_blank\" />"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "8d5f77b6-1a97-4a10-a57c-f0b019b3b0bf"
+      Hint: xLink
+      Value: "<link text=\"\" linktype=\"external\" url=\"https://x.com/williamsleanews\" anchor=\"\" title=\"\" target=\"_blank\" />"
+    - ID: "a769d545-0928-4c53-a36f-031d478dde3c"
+      Hint: link
+      Value: "<link text=\"Contact Us\" linktype=\"internal\" anchor=\"\" querystring=\"\" title=\"\" target=\"\" id=\"@@WL:/Home/Contact@@\" />"
+    - ID: "dea5708a-9719-45dd-a187-9a717812ddfe"
+      Hint: heading
+      Value: "Ready to transform your operations?"
+    - ID: "f5344af6-5d87-439e-ae90-e770a349f059"
+      Hint: copyright
+      Value: "Copyright © 2026 Williams Lea An RRD Company. All rights reserved."

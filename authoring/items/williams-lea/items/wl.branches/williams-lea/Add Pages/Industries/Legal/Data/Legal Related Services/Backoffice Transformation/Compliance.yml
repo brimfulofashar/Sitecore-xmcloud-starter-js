@@ -1,0 +1,20 @@
+---
+ID: "f5ff8105-9f3e-4899-aad5-60ec3b0183a2"
+Parent: "91bf9795-da23-4086-a314-cc32b47e5a86"
+Template: "6d724984-019e-4628-aacf-2d7271258c93"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Industries/Legal/Data/Legal Related Services/Backoffice Transformation/Compliance"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "90aefec3-a459-46f8-af32-9f5bd8a482fe"
+      Hint: link
+      Value: "<link text=\"Compliance\" linktype=\"external\" url=\"/services/operations-management\" anchor=\"\" title=\"\" target=\"\" />"

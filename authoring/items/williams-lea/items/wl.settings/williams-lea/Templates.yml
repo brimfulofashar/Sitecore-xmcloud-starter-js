@@ -1,0 +1,13 @@
+---
+ID: "aa4cc41d-d245-43c4-acd9-5af016e8cb8b"
+Parent: "12738be4-8df2-4c75-a858-04b449748cb2"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: "/sitecore/system/Settings/Project/williams-lea/Templates"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

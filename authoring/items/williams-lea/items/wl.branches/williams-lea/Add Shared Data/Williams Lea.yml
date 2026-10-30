@@ -1,0 +1,13 @@
+---
+ID: "a54c01d0-066c-419c-ac90-751e756f337d"
+Parent: "7b0b0c18-9c41-4388-aea0-cac5664cd01c"
+Template: "7a72b182-a857-4b62-ac01-a6e4c5c2edc0"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Shared Data/Williams Lea"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

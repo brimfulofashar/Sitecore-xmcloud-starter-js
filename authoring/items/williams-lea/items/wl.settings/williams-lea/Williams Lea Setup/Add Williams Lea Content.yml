@@ -1,0 +1,20 @@
+---
+ID: "59323c6d-5496-4e39-a554-23a249b8a903"
+Parent: "a6ba4579-19f8-4ed1-ada2-9c957d58ea81"
+Template: "bc9bb684-36df-4285-888b-d8b4d87b10de"
+Path: "/sitecore/system/Settings/Project/williams-lea/Williams Lea Setup/Add Williams Lea Content"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "200"
+- ID: "c0a5bd91-e658-46ce-b631-77ce337d8e6e"
+  Hint: Script
+  Value: "{7930250F-4B6C-4D8B-A2E5-84F4C5CCB1B4}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

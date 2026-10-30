@@ -1,0 +1,26 @@
+---
+ID: "fe016425-536b-493b-ae10-1fa3d6031b4d"
+Parent: "98257c1f-7463-4596-acc5-84b8e628d42f"
+Template: "b0602368-f67c-433c-8700-862d480546d0"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Insights/Blog/why-creative-operating-models-will-matter-more"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "400"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1">
+          <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r uid="{90F7C01E-42B3-4198-A39D-4D7B6B7A3280}" p:before="*" s:ds="" s:id="{BD26626C-BE58-46CB-AB40-D88F460F3629}" s:par="FieldNames=@@WLV:WL Page Banner/Article@@&amp;DynamicPlaceholderId=1" s:ph="headless-main" />
+            <r uid="{5051DD54-0E52-47D6-A882-D80B47B3210D}" p:after="r[@uid='{90F7C01E-42B3-4198-A39D-4D7B6B7A3280}']" s:ds="@@WL:/Data/Williams Lea/Think Space@@" s:id="{CB0238C5-0DB3-4115-A203-14ADCA278AAF}" s:par="FieldNames&amp;DynamicPlaceholderId=2" s:ph="headless-main" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

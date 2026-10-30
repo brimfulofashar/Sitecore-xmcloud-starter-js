@@ -1,0 +1,20 @@
+---
+ID: "e48f854e-62a4-4fc7-ac4e-00a13a525273"
+Parent: "bc168b01-edda-46cc-aadb-588c6eed35e2"
+Template: "58041043-7bea-44f0-b1b8-08e4ea7054f4"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Solutions in Action/Accelerate Digital Transformation/Data/ADT Body"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "8b57dadd-0825-4f5d-9c32-187c0af7e1fd"
+      Hint: text
+      Value: "<h2>Move to a future-ready support model</h2><p>Anticipate and evolve with your customer's requirements by putting the right technologies, workflows, and best practices into action. From modernizing mailroom operations to automating record-intensive workflows, we streamline the processes that typically slow teams down.</p><p>Our solutions are designed to increase efficiency, strengthen compliance, and create a more responsive, digital-ready environment that flexes with changing demands — connecting data, people, and processes so leaders can make faster, better-informed decisions, optimize resource utilization, and unlock new capacity for growth.</p>"

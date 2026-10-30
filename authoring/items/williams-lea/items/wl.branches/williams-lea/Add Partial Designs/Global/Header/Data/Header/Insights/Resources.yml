@@ -1,0 +1,20 @@
+---
+ID: "9a1cdde5-d87b-483c-aa77-4d5d05a15e0c"
+Parent: "f74b72af-80e6-430b-a7eb-cda4e86dcc82"
+Template: "6d724984-019e-4628-aacf-2d7271258c93"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Partial Designs/Global/Header/Data/Header/Insights/Resources"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "200"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "90aefec3-a459-46f8-af32-9f5bd8a482fe"
+      Hint: link
+      Value: "<link text=\"Resources\" linktype=\"external\" url=\"/insights/resources\" anchor=\"\" title=\"\" target=\"\" />"

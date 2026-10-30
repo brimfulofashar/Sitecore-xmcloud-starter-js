@@ -1,0 +1,26 @@
+---
+ID: "408e209e-3d2f-4888-a579-c82b8071cb2c"
+Parent: "02ba7deb-4e6e-4e3d-a572-2a5adde56c00"
+Template: "d4a9e5ff-2fb8-4e1c-a7fa-3b99ecd8d5f1"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Data/Home Services/Workplace and Office Services"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "400"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "22735a11-e32b-4c87-adb9-587fa9c7c137"
+      Hint: title
+      Value: "Workplace and Office Services"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "4e045fd0-2d5d-4ff7-a34e-6aff4bb82217"
+      Hint: description
+      Value: "<p>We manage the behind-the-scenes logistics that keep your offices running and your people productive. Our integrated services enhance employee experience, operational efficiency, and compliance, so you can focus on your core business.</p>"
+    - ID: "8a7574a9-f53e-4ef5-ad7f-a6b2eb2172b0"
+      Hint: tagline
+      Value: "Orchestrating seamless workplace operations with end-to-end support services"

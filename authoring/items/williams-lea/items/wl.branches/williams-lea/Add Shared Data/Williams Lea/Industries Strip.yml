@@ -1,0 +1,26 @@
+---
+ID: "19dba116-9eb0-4ed8-a872-378c6899431d"
+Parent: "a54c01d0-066c-419c-ac90-751e756f337d"
+Template: "fd0e9316-0abc-49d1-ad95-6bf670fce2ad"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Shared Data/Williams Lea/Industries Strip"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "691b14c3-579a-493c-a37a-c83e34cc524d"
+      Hint: subheading
+      Value: "End-to-end solutions tailored to meet the business objectives of highly regulated and always-on markets"
+    - ID: "b738dfbc-70a9-42d4-a2a1-d57068728759"
+      Hint: heading
+      Value: "Powering Diverse Sectors"
+    - ID: "bd2ff06c-5f1c-4655-a550-18599a596ac0"
+      Hint: eyebrow
+      Value: "Industries"

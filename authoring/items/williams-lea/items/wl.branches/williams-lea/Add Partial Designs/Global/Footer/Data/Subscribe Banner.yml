@@ -1,0 +1,26 @@
+---
+ID: "2f3da9b2-7d7f-44b1-a761-beaef44ee54e"
+Parent: "608f72aa-a7bf-4202-abee-44fdec85d7d6"
+Template: "dd3a903f-43b3-4534-a065-3c96ecd0e7dd"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Partial Designs/Global/Footer/Data/Subscribe Banner"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "691b14c3-579a-493c-a37a-c83e34cc524d"
+      Hint: subheading
+      Value: "Subscribe to our blog"
+    - ID: "b738dfbc-70a9-42d4-a2a1-d57068728759"
+      Hint: heading
+      Value: "The latest expert insights delivered to your inbox"
+    - ID: "f39abeaa-58f4-4b7c-a9d2-3c3edf220dab"
+      Hint: link
+      Value: "<link text=\"Subscribe\" linktype=\"internal\" anchor=\"subscribe\" querystring=\"\" title=\"\" target=\"\" id=\"@@WL:/Home/Insights/Blog@@\" />"

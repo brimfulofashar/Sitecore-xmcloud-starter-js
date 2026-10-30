@@ -1,0 +1,23 @@
+---
+ID: "16e8dd1e-7691-40b1-ab49-fd395309a75b"
+Parent: "3bde9545-99b1-4cf6-a9a1-3c6fb759f93f"
+Template: "62309618-c7a1-48b1-a2c2-46e5d1412288"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Case Studies/Data/Case Study Listing"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "b738dfbc-70a9-42d4-a2a1-d57068728759"
+      Hint: heading
+      Value: "Driving client growth and success"
+    - ID: "cadf3c12-422f-4849-aeb1-d920fbf9fde6"
+      Hint: source
+      Value: "@@WL:/Home/Case Studies@@"

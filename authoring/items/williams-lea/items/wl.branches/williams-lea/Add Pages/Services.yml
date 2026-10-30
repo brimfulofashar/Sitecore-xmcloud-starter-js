@@ -1,0 +1,27 @@
+---
+ID: "79e91e38-e432-43f4-a5c1-03df5aad15f9"
+Parent: "194fdbf8-528e-4d59-ab4c-ea9da419b74f"
+Template: "a9919790-3389-4fc2-abc8-24f73c847c8e"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Services"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1">
+          <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r uid="{E313ABBF-A48F-45C0-A02E-2CE6D1B30D61}" p:before="*" s:ds="" s:id="{BD26626C-BE58-46CB-AB40-D88F460F3629}" s:par="FieldNames&amp;DynamicPlaceholderId=1" s:ph="headless-main" />
+            <r uid="{5A92C8EF-AF8B-4BB2-A343-F906A583CB7F}" p:after="r[@uid='{E313ABBF-A48F-45C0-A02E-2CE6D1B30D61}']" s:ds="@@WL:/Home/Data/Home Services@@" s:id="{37065769-66A5-45E6-AA8F-71E2D5A476A8}" s:par="FieldNames&amp;DynamicPlaceholderId=2" s:ph="headless-main" />
+            <r uid="{CFE0AC1D-0A84-42D8-A584-4E6F84A88220}" p:after="r[@uid='{5A92C8EF-AF8B-4BB2-A343-F906A583CB7F}']" s:ds="@@WL:/Data/Williams Lea/Contact CTA@@" s:id="{ACCB6FBA-9307-44B2-AB12-27BE1A86F1DD}" s:par="FieldNames&amp;DynamicPlaceholderId=3" s:ph="headless-main" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"

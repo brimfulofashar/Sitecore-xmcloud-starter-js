@@ -1,0 +1,26 @@
+---
+ID: "156edded-c67f-4120-ab54-ac3553d82e69"
+Parent: "e6dccb47-cae9-4b5e-ad91-4d50535038cd"
+Template: "d4a9e5ff-2fb8-4e1c-a7fa-3b99ecd8d5f1"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Data/Home Digital Transformation/Technology"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "200"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "22735a11-e32b-4c87-adb9-587fa9c7c137"
+      Hint: title
+      Value: "Technology"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "4e045fd0-2d5d-4ff7-a34e-6aff4bb82217"
+      Hint: description
+      Value: "<p>Williams Lea's technology solutions bring structure, speed, and intelligence to complex operations. Our AI-powered tools, spanning automation, real-time analytics, and centralized content management, eliminate manual bottlenecks and give teams the tools to execute faster without sacrificing quality or compliance. Built for highly regulated industries, they integrate seamlessly into existing systems and deliver measurable efficiency gains across global operations.</p>"
+    - ID: "641f4689-4be0-4415-a7d0-0320ac9d2969"
+      Hint: link
+      Value: "<link text=\"Learn more\" linktype=\"external\" url=\"/technology\" anchor=\"\" title=\"\" target=\"\" />"

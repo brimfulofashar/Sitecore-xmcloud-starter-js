@@ -1,0 +1,20 @@
+---
+ID: "a6e2d436-227f-4143-a6d3-ffeec8d750c4"
+Parent: "0aa1175c-0092-4eb4-a212-0e744425e805"
+Template: "58041043-7bea-44f0-b1b8-08e4ea7054f4"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Insights/Blog/who-owns-the-work-when-ai-crosses-every-department/Data/Article Body"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "100"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
+    - ID: "8b57dadd-0825-4f5d-9c32-187c0af7e1fd"
+      Hint: text
+      Value: "<p><em>By Mike Raposa, Chief Revenue Officer, Williams Lea</em></p><h2>Big Law is breaking profit records again. But for how long?</h2><p>Firms are spending more to run the business, carrying more unbilled work and waiting longer to get paid. AI is supposed to help with all three. So far, the returns are hard to find.</p><h2>Who owns the work that crosses departments</h2><p>Law firms have always been organized by department. That works until the deliverable crosses all of them—and real AI workflows do. Each department owns its piece of that chain, and the gains from AI stall at every handoff where ownership stops.</p><p><a href=\"https://www.williamslea.com/blog/who-owns-the-work-when-ai-crosses-every-department/\">Read the full article on williamslea.com</a></p>"

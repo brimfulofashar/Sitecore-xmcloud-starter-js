@@ -1,0 +1,17 @@
+---
+ID: "927e9501-010f-4e21-a27d-ff810d021109"
+Parent: "98257c1f-7463-4596-acc5-84b8e628d42f"
+Template: "1c82e550-ebcd-4e5d-8abd-d50d0809541e"
+Path: "/sitecore/templates/Branches/Project/williams-lea/Add Pages/Insights/Blog/Data"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "0"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20261029T000000Z"
