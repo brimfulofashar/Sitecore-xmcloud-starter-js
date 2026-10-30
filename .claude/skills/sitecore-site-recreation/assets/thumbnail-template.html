@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!--
+      Site template tile mock-up. Copy to <app>/scripts/assets/site-template-thumbnail.html,
+      replace the brand tokens and TODO text, then render with scripts/render-thumbnail.ps1.
+      Aim for a recognizable first screen of the site: header, hero, one call to action.
+      Keep it self-contained (no external fonts or images) so headless rendering is reliable.
+    -->
+    <style>
+      :root {
+        --brand-primary: #004e97; /* TODO: header logo, buttons */
+        --brand-text: #333d47; /* TODO: nav text */
+        --hero-from: #0a1f3d; /* TODO: hero gradient */
+        --hero-via: #004e97;
+        --hero-to: #5b2a86;
+        --accent: #ff9e25; /* TODO: eyebrow */
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        width: 1170px;
+        height: 1000px;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        overflow: hidden;
+        background: var(--hero-from);
+      }
+      header {
+        height: 120px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        padding: 0 56px;
+        gap: 44px;
+      }
+      .logo {
+        color: var(--brand-primary);
+        font-size: 40px;
+        font-weight: 600;
+        margin-right: auto;
+      }
+      nav {
+        display: flex;
+        gap: 34px;
+        color: var(--brand-text);
+        font-size: 22px;
+      }
+      .cta {
+        background: var(--brand-primary);
+        color: #fff;
+        font-size: 22px;
+        padding: 14px 28px;
+        border-radius: 999px;
+      }
+      .hero {
+        position: relative;
+        height: 880px;
+        background: linear-gradient(135deg, var(--hero-from) 0%, var(--hero-via) 55%, var(--hero-to) 100%);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 90px;
+        gap: 34px;
+      }
+      .eyebrow {
+        color: var(--accent);
+        font-style: italic;
+        font-size: 30px;
+      }
+      h1 {
+        color: #fff;
+        font-weight: 300;
+        font-size: 64px;
+        line-height: 1.15;
+      }
+      .btn {
+        border: 2px solid #fff;
+        color: #fff;
+        font-size: 24px;
+        padding: 16px 34px;
+        border-radius: 999px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">TODO brand name</div>
+      <nav><span>TODO</span><span>Main</span><span>Navigation</span><span>Items</span></nav>
+      <div class="cta">TODO Contact</div>
+    </header>
+    <section class="hero">
+      <div class="eyebrow">TODO eyebrow / tagline</div>
+      <h1>TODO the site's real hero headline</h1>
+      <div class="btn">TODO Learn more &rarr;</div>
+    </section>
+  </body>
+</html>
